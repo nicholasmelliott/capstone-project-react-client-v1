@@ -1,5 +1,6 @@
 import React from 'react';
 import OrderMainCompleteItems from './OrderMainCompleteItems';
+import OrderMainPendingItems from './OrderMainPendingItems';
 
 const OrdersMain = ({ orders, loading }) => (
 	<div>
@@ -17,7 +18,7 @@ const OrdersMain = ({ orders, loading }) => (
             <div class="col pl-0 ml-xl-2 mr-xl-4">  
               <div class="pending-header">Pending Orders<img class="ml-2" src="circle.svg" width="14px" height="14px"/></div>
               <div class="orders-large-body"> 
-                //include orderPendingItems
+                <OrderMainPendingItems orders={orders} />
               </div>
             </div>
           </div>
@@ -31,10 +32,10 @@ const OrdersMain = ({ orders, loading }) => (
           </nav>
           <div class="d-lg-none orders-small-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
             <div id="cOrders"> 
-              //include orderCompleteItems
+              <OrderMainCompleteItems orders={orders} />
             </div>
             <div id="pOrders"> 
-              //include orderPendingItems
+              <OrderMainPendingItems orders={orders} />
             </div>
           </div>
         </div>
