@@ -34,9 +34,11 @@ const OrderMainPendingItems = ({ orders , loading }) => (
 							<div class="row ml-2 mt-2">
   								<ul class="list-group" style={{width:100 + "%"}}> 
 									{(()=>{
+                                        let totalProducts = 0;
 										if(order.products){
 											const sizeTypeLi = 
 												order.products.map((product)=>{
+                                                    totalProducts += product.quantity
 													if(product.Dimension){
 														return(
 															<li class="list-group-item p-0 d-flex inline-block">
@@ -58,7 +60,7 @@ const OrderMainPendingItems = ({ orders , loading }) => (
 													{sizeTypeLi} 
 													<li class="list-group-item p-0 d-flex inline-block">
 														<h6 class="col-1 p-0 font-italic font-weight-bold">
-															{order.products.length}
+															{totalProducts}
 														</h6>
 														<h8 class="col-3 p-0 font-italic text-left">Total Items</h8>
 													</li> 
