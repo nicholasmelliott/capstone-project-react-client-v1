@@ -6,21 +6,18 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* background-color: #EBEBEB; */
-  /* background-image: url("../screenCloseup.JPG"); */
+  background-image: url("./screenCloseup.JPG"); 
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   height: 3000px;
 }
 
-a {
-  text-decoration: none;
-  padding: 0;
-}
 
 ul {
   list-style-type: none;
 }
+
 
 /* Home Page Styling */
 
@@ -39,12 +36,13 @@ ul {
 }
 
 .card {
-  /* margin-left: 1px; */
+  margin-left: 2px;
+  margin-right: 2px;
   /* border: 2px solid #B5B5B5; */
   border-radius: 5px;
   color: #EBEBEB;
-  background-color: rgba(255, 255, 255, 0);
-  background-image: linear-gradient(rgba(255, 255, 255, 0.137), black);
+  /* background-color: rgba(255, 255, 255, 0); */
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0,0,0,0));
 }
 
 .card-body {
@@ -196,3 +194,9 @@ h6 {
   overflow: auto;
   height: 800px;
 }
+
+/* .img-form {
+  background-image: radial-gradient( black, rgba(255, 255, 255, 0.137));
+  background-image: linear-gradient( 120deg, black,rgba(200, 233, 215, .137));
+  background-color: #c8e9d7;
+} */

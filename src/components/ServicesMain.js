@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ServicesMain = ({ services , loading }) => (
@@ -13,7 +12,7 @@ const ServicesMain = ({ services , loading }) => (
           {services.map((service)=>{
             return(
               <div class="card col" width="18rem">
-               <img class="card-img-top mt-2" src={service.imgSrc} alt="Card image cap" />
+               <img class="card-img-top mt-2" src={service.imgSrc} style={{fill: "#EBEBEB"}} alt="Card image cap" />
                <div class="card-body pl-0 pr-0">
                 <h5 class="card-title">{service.type}</h5>
                 <p class="card-text">{service.desc}</p>
