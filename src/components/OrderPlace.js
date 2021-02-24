@@ -8,7 +8,24 @@ class OrderPlace extends Component {
     super(props);
     this.state = {
       screens: [],
+      windows: [],
       newScreen: {
+        quantity: '',
+        width: '',
+        height: '',
+        depth: '',
+        fType: '',
+        fColor: '',
+        hardware: [
+          {
+            type: '',
+            fromLoc: '',
+            dist: ''
+          }
+        ],
+        sType: ''
+      },
+      newWindow: {
         quantity: '',
         width: '',
         height: '',
@@ -28,26 +45,96 @@ class OrderPlace extends Component {
   }
 
   submitHandler = (event) => {
+    const totalProd = event.target.id;
+    const prod = event.target.name;
+    
     event.preventDefault();
     this.setState(prevState => ({
-        screens: [
-        ...prevState.screens,
-        {
-          service: event.target.name,
-          details: this.state.newScreen
-        }
+        [totalProd]: [
+          ...prevState[totalProd],
+          {
+            service: prod,
+            details: this.state[prod]
+          }
         ]
     }));
-    console.log(this.state.screens);
   }
 
   changeHandler = (event) => {
-      this.setState(prevState => ({
-        newScreen: {
-          ...prevState.newScreen,
-          [event.target.name] : event.target.value
-        }
-      }));  
+    const prod = event.target.form.name;
+
+    this.setState(prevState => ({
+      [prod]: {
+        ...prevState[prod],
+        [event.target.name] : event.target.value
+      }
+    }));  
+  }
+
+  //Hardware functions
+  handleListChanges = (i, list, event) => {
+    const prod = event.target.form.name;
+    const prodList = this.state[prod][list];
+    let values = [...prodList];
+    
+    values[i] = {
+       ...prodList[i],
+       [event.target.name] : event.target.value
+    };
+    this.setState(prevState => ({[prod]: {
+      ...prevState[prod],
+      [list]: values
+    }}));
+  }  
+ 
+ addItemClick = (prod, list) => {
+   this.setState(prevState => ({[prod]: {
+     ...prevState[prod],
+    [list]: [...prevState[prod][list], '']
+   }}))
+ }
+ 
+ removeItemClick(i, prod, list){
+    let values = [...this.state[prod][list]];
+
+    values.splice(i,1);
+    this.setState(prevState => ({[prod]: {
+      [list]: values
+     }}));
+ }
+
+ hardwareUI = () => {
+  return this.state.newScreen.hardware.map((val, i) => 
+      <div class="row" id={i} key={i}>
+        <div class="form-group col-4">
+           <select class="form-control" name="type" id="hType"  value={val.type||''} onChange={this.handleListChanges.bind(this, i, 'hardware')}>
+             <option value="none">None</option>
+             <option value="plunger">Plunger</option>
+             <option value="knife latch">Knife Latch</option>
+             <option value="pull tab">Pull Tab</option>
+             <option value="tension spring">Tension Spring</option>
+           </select>
+         </div>
+         <div class="form-group col-3 mt-auto">
+           <select class="form-control mt-auto" name="fromLoc" id="hFromLoc" value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, 'hardware')}>
+             <option value="BottomLeftToTop">BottomLeftToTop</option>
+             <option value="BottomLeftToRight">BottomLeftToRight</option>
+             <option value="BottomRightToTop">BottomRightToTop</option>
+             <option value="BottomRightToLeft">BottomRightToLeft</option>
+             <option value="TopLeftToBottom">TopLeftToBottom</option>
+             <option value="TopLeftToRight">TopLeftToRight</option>
+             <option value="TopRightToBottom">TopRightToBottom</option>
+             <option value="TopRightToLeft">TopRightToLeft</option>
+           </select>
+         </div>
+         <div class="form-group col-3 mt-auto">
+             <input class="form-control" name="dist" value={val.dist||''} id="hDist" placeholder="24 7/16" onChange={this.handleListChanges.bind(this, i, 'hardware')}/> 
+         </div>
+         <div class="col-2 mt-auto mb-3">
+           <button class="btn btn-outline-secondary" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, 'newScreen', 'hardware')}><strong>-</strong></button>
+         </div>
+     </div>
+   )     
   }
 
   render(){
@@ -77,8 +164,13 @@ class OrderPlace extends Component {
               <div class="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
                 <div class="col-lg-4 order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
-                    <form onSubmit={this.submitHandler}  name="build">
-                      <NewScreensForm services={this.props.services} input={this.state.newScreen} change={this.changeHandler}/>
+                    <form onSubmit={this.submitHandler} id="screens" name="newScreen">
+                      <NewScreensForm 
+                        services={this.props.services} 
+                        input={this.state.newScreen} 
+                        change={this.changeHandler} 
+                        addItem={this.addItemClick}
+                        hardwareUI={this.hardwareUI}/>
                       <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
                     </form>
                   </div>
@@ -109,8 +201,8 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                 </div>
-                <div class="col-lg-8">
-                    <div style={{backgroundColor: 'white'}}>
+                <div class="col-lg-8 fixed-bottom">
+                    <div style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
                      <h1>CART</h1>
                      <ul class="list-group">
                       <li class="list-group-item  p-0">
