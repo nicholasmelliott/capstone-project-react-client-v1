@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewScreensForm = ({services, input, change, addItem, hardwareUI}) => ( 
+const NewScreensForm = ({services, change, hardwareUI}) => ( 
   <div> 
     <div class="row">
       <div class="col-8">
@@ -37,6 +37,21 @@ const NewScreensForm = ({services, input, change, addItem, hardwareUI}) => (
           <input class="form-control" id="width" name="width" placeholder="24 7/16" type="text" onChange={change}/>
           <label for="width">Width</label>
         </div>
+        {/* Mockup for adding fractions to dimension fields */}
+        {/* <div class="form-group col"> 
+          <div class="input-group">
+            <input class="form-control" id="width" name="width" placeholder="24 7/16" type="text" onChange={change}/>
+            <select class="form-control" id="wFColor" name="fColor" onChange={change}>
+              <option value="1/8">1/8</option>
+              <option value="1/4">1/4</option>
+              <option value="3/8">3/8</option>
+              <option value="1/2">1/2</option>
+              <option value="5/8">5/8</option>
+              <option value="3/4">3/4</option>
+            </select>
+          </div>
+          <label for="width">Width</label>
+        </div> */}
         <div class="form-group col-1">X </div>
         <div class="form-group col"> 
           <input class="form-control" id="height" name="height" placeholder="32 7/16" onChange={change}/>
@@ -77,19 +92,7 @@ const NewScreensForm = ({services, input, change, addItem, hardwareUI}) => (
     </div>
     <hr/>
     <h6>Hardware</h6>
-    <div class="row">
-      <div class="form-group col-4 mt-auto">
-       <label class="mt-2" for="hType">Please select the hardware type:</label>
-      </div>
-      <div class="form-group col-3 mt-auto">
-        <label class="mt-2" for="hFromLoc">Please select the start location:</label>
-      </div>
-      <div class="form-group col-3 mt-auto">
-      <label class="mt-2" for="hDist">Please select the distance from start location:</label>      
-      </div>
-    </div>
-    {hardwareUI()}
-    <button class="btn btn-outline-secondary" type="button" id="{i}"  onClick={addItem.bind(this, 'newScreen', 'hardware')}><strong>+</strong></button>
+    {hardwareUI('newScreen', 'hardware')}
     <hr/>
     <h6>Screen</h6>
     <div class="row">     

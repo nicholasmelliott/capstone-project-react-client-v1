@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewWindowsForm = ({ services , loading }) => (
+const NewWindowsForm = ({ services, change, hardwareUI, loading }) => (
   <div> 
     <div class="row">
       <div class="col-8">
@@ -13,8 +13,8 @@ const NewWindowsForm = ({ services , loading }) => (
     <h6>Quantity</h6>      
     <div class="form-group row"> 
       <div class="col-12">
-        <label class="mt-2" for="quantity">Please select a quantity:</label>
-        <select class="form-control" id="quantity" name="quantity">
+        <label class="mt-2" for="wQuantity">Please select a quantity:</label>
+        <select class="form-control" id="wQuantity" name="quantity" onChange={change}>
           {/* Creates multiple quantity options */}
           {(()=>{
             let opt = [];
@@ -34,18 +34,18 @@ const NewWindowsForm = ({ services , loading }) => (
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
       <div class="form-row mt-2">
         <div class="form-group col"> 
-          <input class="form-control" id="width" name="width" placeholder="24 7/16"/>
-          <label for="width">Width</label>
+          <input class="form-control" id="wWidth" name="width" placeholder="24 7/16" onChange={change}/>
+          <label for="wWidth">Width</label>
         </div>
         <div class="form-group col-1">X </div>
         <div class="form-group col"> 
-          <input class="form-control" id="height" name="height" placeholder="32 7/16"/>
-          <label for="height">Height</label>
+          <input class="form-control" id="wHeight" name="height" placeholder="32 7/16" onChange={change}/>
+          <label for="wHeight">Height</label>
         </div>
         <div class="form-group col-1">X   </div>
         <div class="form-group col"> 
-          <input class="form-control" id="depth" name="depth" placeholder="7/16"/>
-          <label for="depth">Depth</label>
+          <input class="form-control" id="wDepth" name="depth" placeholder="7/16" onChange={change}/>
+          <label for="wDepth">Depth</label>
         </div>
       </div>
     </div>
@@ -54,8 +54,8 @@ const NewWindowsForm = ({ services , loading }) => (
     <div class="row">  
       <div class="col-6">
         <div class="form-group"> 
-          <label class="mt-2" for="frameType">Please select the frame type:</label>
-          <select class="form-control" id="frameType" name="frameType">
+          <label class="mt-2" for="wFType">Please select the frame type:</label>
+          <select class="form-control" id="wFType" name="fType" onChange={change}>
             <option value="standard">Standard</option>
             <option value="storm">Storm</option>
           </select>
@@ -63,8 +63,8 @@ const NewWindowsForm = ({ services , loading }) => (
       </div>
       <div class="col-6">
         <div class="form-group"> 
-          <label class="mt-2" for="frameColor">Please select the frame color:</label>
-          <select class="form-control" id="frameColor" name="frameColor">
+          <label class="mt-2" for="wFColor">Please select the frame color:</label>
+          <select class="form-control" id="wFColor" name="fColor" onChange={change}>
             <option value="white">White</option>
             <option value="bronze">Bronze</option>
             <option value="mill">Mill</option>
@@ -77,43 +77,13 @@ const NewWindowsForm = ({ services , loading }) => (
     </div>
     <hr/>
     <h6>Hardware</h6>
-    <div class="row">    
-      <div class="form-group col-4">
-          <label class="mt-2" for="hardwareType">Please select the hardware type:</label>
-          <select class="form-control" id="hardwareType" name="hardwareType">
-            <option value="none">None</option>
-            <option value="slide bolt">Slide Bolt</option>
-            <option value="knife latch">Knife Latch</option>
-            <option value="tension spring">Tension Spring</option>
-          </select>
-      </div>
-      <div class="form-group col-3 mt-auto">
-          <label class="mt-2" for="hardwareLoc">Start corner:</label>
-          <select class="form-control mt-auto" id="hardwareLoc" name="hardwareLoc">
-            <option value="BottomLeftToTop">BottomLeftToTop</option>
-            <option value="BottomLeftToRight">BottomLeftToRight</option>
-            <option value="BottomRightToTop">BottomRightToTop</option>
-            <option value="BottomRightToLeft">BottomRightToLeft</option>
-            <option value="TopLeftToBottom">TopLeftToBottom</option>
-            <option value="TopLeftToRight">TopLeftToRight</option>
-            <option value="TopRightToBottom">TopRightToBottom</option>
-            <option value="TopRightToLeft">TopRightToLeft</option>
-          </select>
-      </div>
-      <div class="form-group col-3 mt-auto">
-          <label for="hardwareLocNum">Distance from corner:</label>
-          <input class="form-control" id="hardwareLocNum" name="hardwareLocNum" placeholder="24 7/16"/> 
-      </div>
-      <div class="col-2 mt-auto mb-3">
-        <button class="btn btn-outline-secondary" id="addNewHardware" type="button"><strong>+</strong></button>
-      </div>
-    </div>
+    {hardwareUI('newWindow', 'hardware')}
     <hr/>
-    <h6>Screen</h6>
+    <h6>Window</h6>
     <div class="row">     
       <div class="form-group col-12"> 
-        <label class="mt-2" for="windowMaterialType">Please select the window material:</label>
-        <select class="form-control" id="windowMaterialType" name="windowMaterialType">
+        <label class="mt-2" for="wMaterial">Please select the window material:</label>
+        <select class="form-control" id="wMaterial" name="wMaterial" onChange={change}>
           <option value="glass">Glass</option>
           <option value="acrylic">Acrylic</option>
         </select>

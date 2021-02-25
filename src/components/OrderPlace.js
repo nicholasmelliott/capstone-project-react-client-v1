@@ -39,7 +39,7 @@ class OrderPlace extends Component {
             dist: ''
           }
         ],
-        sType: ''
+        wMaterial: ''
       }
     }
   }
@@ -47,7 +47,7 @@ class OrderPlace extends Component {
   submitHandler = (event) => {
     const totalProd = event.target.id;
     const prod = event.target.name;
-    
+    console.log(this.state.screens, this.state.windows);
     event.preventDefault();
     this.setState(prevState => ({
         [totalProd]: [
@@ -103,39 +103,55 @@ class OrderPlace extends Component {
      }}));
  }
 
- hardwareUI = () => {
-  return this.state.newScreen.hardware.map((val, i) => 
-      <div class="row" id={i} key={i}>
-        <div class="form-group col-4">
-           <select class="form-control" name="type" id="hType"  value={val.type||''} onChange={this.handleListChanges.bind(this, i, 'hardware')}>
-             <option value="none">None</option>
-             <option value="plunger">Plunger</option>
-             <option value="knife latch">Knife Latch</option>
-             <option value="pull tab">Pull Tab</option>
-             <option value="tension spring">Tension Spring</option>
-           </select>
-         </div>
-         <div class="form-group col-3 mt-auto">
-           <select class="form-control mt-auto" name="fromLoc" id="hFromLoc" value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, 'hardware')}>
-             <option value="BottomLeftToTop">BottomLeftToTop</option>
-             <option value="BottomLeftToRight">BottomLeftToRight</option>
-             <option value="BottomRightToTop">BottomRightToTop</option>
-             <option value="BottomRightToLeft">BottomRightToLeft</option>
-             <option value="TopLeftToBottom">TopLeftToBottom</option>
-             <option value="TopLeftToRight">TopLeftToRight</option>
-             <option value="TopRightToBottom">TopRightToBottom</option>
-             <option value="TopRightToLeft">TopRightToLeft</option>
-           </select>
-         </div>
-         <div class="form-group col-3 mt-auto">
-             <input class="form-control" name="dist" value={val.dist||''} id="hDist" placeholder="24 7/16" onChange={this.handleListChanges.bind(this, i, 'hardware')}/> 
-         </div>
-         <div class="col-2 mt-auto mb-3">
-           <button class="btn btn-outline-secondary" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, 'newScreen', 'hardware')}><strong>-</strong></button>
-         </div>
-     </div>
-   )     
-  }
+ hardwareUI = (prod, list) => {
+  return( 
+    <div>
+      <div class="row">
+        <div class="form-group col-4 mt-auto">
+          <label class="mt-2" for="hType">Please select the hardware type:</label>
+        </div>
+        <div class="form-group col-3 mt-auto">
+          <label class="mt-2" for="hFromLoc">Please select the start location:</label>
+        </div>
+        <div class="form-group col-3 mt-auto">
+          <label class="mt-2" for="hDist">Please select the distance from start location:</label>      
+        </div>
+      </div>
+      {this.state[prod][list].map((val, i) => 
+        <div class="row" id={i} key={i}>
+          <div class="form-group col-4">
+             <select class="form-control" name="type" id="hType"  value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
+               <option value="none">None</option>
+               <option value="plunger">Plunger</option>
+               <option value="knife latch">Knife Latch</option>
+               <option value="pull tab">Pull Tab</option>
+               <option value="tension spring">Tension Spring</option>
+             </select>
+           </div>
+           <div class="form-group col-3 mt-auto">
+             <select class="form-control mt-auto" name="fromLoc" id="hFromLoc" value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
+               <option value="BottomLeftToTop">BottomLeftToTop</option>
+               <option value="BottomLeftToRight">BottomLeftToRight</option>
+               <option value="BottomRightToTop">BottomRightToTop</option>
+               <option value="BottomRightToLeft">BottomRightToLeft</option>
+               <option value="TopLeftToBottom">TopLeftToBottom</option>
+               <option value="TopLeftToRight">TopLeftToRight</option>
+               <option value="TopRightToBottom">TopRightToBottom</option>
+               <option value="TopRightToLeft">TopRightToLeft</option>
+             </select>
+           </div>
+           <div class="form-group col-3 mt-auto">
+               <input class="form-control" name="dist" value={val.dist||''} id="hDist" placeholder="24 7/16" onChange={this.handleListChanges.bind(this, i, list)}/> 
+           </div>
+           <div class="col-2 mt-auto mb-3">
+             <button class="btn btn-outline-secondary" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}><strong>-</strong></button>
+           </div>
+       </div>
+      )}
+      <button class="btn btn-outline-secondary" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}><strong>+</strong></button>  
+    </div>
+  )   
+ }
 
   render(){
     return(
@@ -167,18 +183,20 @@ class OrderPlace extends Component {
                     <form onSubmit={this.submitHandler} id="screens" name="newScreen">
                       <NewScreensForm 
                         services={this.props.services} 
-                        input={this.state.newScreen} 
                         change={this.changeHandler} 
-                        addItem={this.addItemClick}
                         hardwareUI={this.hardwareUI}/>
                       <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
                     </form>
                   </div>
                   <div id="bWindows">
                     <hr/>
-                    <form>
-                      <NewWindowsForm services={this.props.services}/>     
-                      <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="button">Add Window(s) to Order</button>                     
+                    <form onSubmit={this.submitHandler} id="windows" name="newWindow">
+                      <NewWindowsForm 
+                        services={this.props.services} 
+                        change={this.changeHandler}
+                        hardwareUI={this.hardwareUI}
+                        />     
+                      <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add Window(s) to Order</button>                     
                     </form>
                   </div>
                   <div id="rScreens">
@@ -201,8 +219,9 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                 </div>
-                <div class="col-lg-8 fixed-bottom">
-                    <div style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
+                <div class="row fixed-bottom">
+                    <div class="col-lg-5"/>
+                    <div class="col-lg-6" style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
                      <h1>CART</h1>
                      <ul class="list-group">
                       <li class="list-group-item  p-0">
@@ -213,28 +232,66 @@ class OrderPlace extends Component {
                           <h6 class="col-3">Price</h6>
                         </div>
                       </li>
-                      <li class="list-group-item  p-0">
-                        <div class="row">
-                          <h8 class="col-3">{this.state.newScreen.quantity}</h8>
-                          <ul class="list-group  p-0">
-                            <li class="list-group-item  p-0">
-                              {this.state.newScreen.width} x {this.state.newScreen.height} x {this.state.newScreen.depth} 
-                            </li>
-                            <li class="list-group-item  p-0">
-                              {this.state.newScreen.fColor} 
-                            </li>
-                            <li class="list-group-item  p-0">
-                              {this.state.newScreen.fType} 
-                            </li>
-                            <li class="list-group-item  p-0">
-                              {this.state.newScreen.sType} 
-                            </li>
-                            <li class="list-group-item  p-0">
-                              {this.state.newScreen.hardware[0].type} 
-                            </li>
-                          </ul> 
-                        </div>
-                      </li>
+                      {this.state.screens.map((screen) => {
+                        return(
+                        <li class="list-group-item p-0">
+                          <div class="row">
+                            <div class="col-3">
+                              <h6>{screen.details.quantity}</h6>
+                              <img src={this.props.services[0].imgSrc} />
+                            </div>
+                            <ul class="list-group col-3 p-0">
+                              <li class="list-group-item  p-0">
+                                <strong>Screen(s)</strong>
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {screen.details.width} x {screen.details.height} x {screen.details.depth} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {screen.details.fColor} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {screen.details.fType} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {screen.details.sType} 
+                              </li>
+                            </ul> 
+                            <h8 class="col-3">{screen.service}</h8>
+                          </div>
+                        </li>
+                        )
+                      })}
+                      {this.state.windows.map((window) => {
+                        return(
+                        <li class="list-group-item  p-0">
+                          <div class="row">
+                            <div class="col-3">
+                              <h6>{window.details.quantity}</h6>
+                              <img src={this.props.services[1].imgSrc} />
+                            </div>
+                            <ul class="list-group col-3 p-0">
+                              <li class="list-group-item  p-0">
+                                <strong>Screen(s)</strong>
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {window.details.width} x {window.details.height} x {window.details.depth} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {window.details.fColor} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {window.details.fType} 
+                              </li>
+                              <li class="list-group-item  p-0">
+                                {window.details.wMaterial} 
+                              </li>
+                            </ul> 
+                            <h8 class="col-3">{window.service}</h8>
+                          </div>
+                        </li>
+                        )
+                      })}
                      </ul>     
                   </div>
                 </div>
