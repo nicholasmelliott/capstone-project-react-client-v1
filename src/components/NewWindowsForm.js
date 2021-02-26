@@ -1,6 +1,7 @@
 import React from 'react';
 
-const NewWindowsForm = ({ services, change, hardwareUI, loading }) => (
+const prod = "newWindow";
+const NewWindowsForm = ({ services, change, hardwareUI, dimensionUI, loading }) => (
   <div> 
     <div class="row">
       <div class="col-8">
@@ -29,24 +30,15 @@ const NewWindowsForm = ({ services, change, hardwareUI, loading }) => (
     <hr/>
     <h6>Dimensions</h6>
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label class="form-row ml-1" for="width">Please enter the window's dimensions:</label>
+      <label class="form-row ml-1" for="width">Please enter the screen's dimensions (in inches):</label>
     </div>
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
       <div class="form-row mt-2">
-        <div class="form-group col"> 
-          <input class="form-control" id="wWidth" name="width" placeholder="24 7/16" onChange={change}/>
-          <label for="wWidth">Width</label>
-        </div>
+        {dimensionUI(prod, 'width')}
         <div class="form-group col-1">X </div>
-        <div class="form-group col"> 
-          <input class="form-control" id="wHeight" name="height" placeholder="32 7/16" onChange={change}/>
-          <label for="wHeight">Height</label>
-        </div>
+        {dimensionUI(prod, 'height')}
         <div class="form-group col-1">X   </div>
-        <div class="form-group col"> 
-          <input class="form-control" id="wDepth" name="depth" placeholder="7/16" onChange={change}/>
-          <label for="wDepth">Depth</label>
-        </div>
+        {dimensionUI(prod, 'depth')}
       </div>
     </div>
     <hr/>
@@ -77,7 +69,7 @@ const NewWindowsForm = ({ services, change, hardwareUI, loading }) => (
     </div>
     <hr/>
     <h6>Hardware</h6>
-    {hardwareUI('newWindow', 'hardware')}
+    {hardwareUI(prod, 'hardware')}
     <hr/>
     <h6>Window</h6>
     <div class="row">     

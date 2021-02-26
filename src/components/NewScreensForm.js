@@ -1,6 +1,7 @@
 import React from 'react';
 
-const NewScreensForm = ({services, change, hardwareUI}) => ( 
+const prod = "newScreen";
+const NewScreensForm = ({services, change, hardwareUI, dimensionUI}) => ( 
   <div> 
     <div class="row">
       <div class="col-8">
@@ -19,7 +20,11 @@ const NewScreensForm = ({services, change, hardwareUI}) => (
           {(()=>{
             let opt = [];
             for(let i = 1; i <= 30; i++){
-              opt.push(<option value={i}>{i}</option>);
+              if(i === 1){
+                opt.push(<option value={i} selected>{i}</option>);
+              }else{
+                opt.push(<option value={i}>{i}</option>);
+              }
             }
             return (opt);
           })()}
@@ -29,39 +34,15 @@ const NewScreensForm = ({services, change, hardwareUI}) => (
     <hr/>
     <h6>Dimensions</h6>
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label class="form-row ml-1" for="width">Please enter the screen's dimensions:</label>
+      <label class="form-row ml-1" for="width">Please enter the screen's dimensions (in inches):</label>
     </div>
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
       <div class="form-row mt-2">
-        <div class="form-group col"> 
-          <input class="form-control" id="width" name="width" placeholder="24 7/16" type="text" onChange={change}/>
-          <label for="width">Width</label>
-        </div>
-        {/* Mockup for adding fractions to dimension fields */}
-        {/* <div class="form-group col"> 
-          <div class="input-group">
-            <input class="form-control" id="width" name="width" placeholder="24 7/16" type="text" onChange={change}/>
-            <select class="form-control" id="wFColor" name="fColor" onChange={change}>
-              <option value="1/8">1/8</option>
-              <option value="1/4">1/4</option>
-              <option value="3/8">3/8</option>
-              <option value="1/2">1/2</option>
-              <option value="5/8">5/8</option>
-              <option value="3/4">3/4</option>
-            </select>
-          </div>
-          <label for="width">Width</label>
-        </div> */}
+        {dimensionUI(prod,'width')}
         <div class="form-group col-1">X </div>
-        <div class="form-group col"> 
-          <input class="form-control" id="height" name="height" placeholder="32 7/16" onChange={change}/>
-          <label for="height">Height</label>
-        </div>
+        {dimensionUI(prod,'height')}
         <div class="form-group col-1">X   </div>
-        <div class="form-group col"> 
-          <input class="form-control" id="depth" name="depth" placeholder="7/16" onChange={change}/>
-          <label for="depth">Depth</label>
-        </div>
+        {dimensionUI(prod, 'depth')}
       </div>
     </div>
     <hr/>
@@ -71,7 +52,7 @@ const NewScreensForm = ({services, change, hardwareUI}) => (
         <div class="form-group"> 
           <label class="mt-2" for="frameType">Please select the frame type:</label>
           <select class="form-control" id="frameType" name="fType" onChange={change}>
-            <option value="standard">Standard</option>
+            <option value="standard" selected>Standard</option>
             <option value="storm">Storm</option>
           </select>
         </div>
@@ -92,7 +73,7 @@ const NewScreensForm = ({services, change, hardwareUI}) => (
     </div>
     <hr/>
     <h6>Hardware</h6>
-    {hardwareUI('newScreen', 'hardware')}
+    {hardwareUI(prod, 'hardware')}
     <hr/>
     <h6>Screen</h6>
     <div class="row">     

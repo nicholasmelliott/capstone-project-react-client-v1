@@ -7,41 +7,96 @@ class OrderPlace extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      fractions: [],
       screens: [],
       windows: [],
       newScreen: {
         quantity: '',
-        width: '',
-        height: '',
-        depth: '',
+        width: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        height: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        depth: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
         fType: '',
         fColor: '',
         hardware: [
           {
             type: '',
             fromLoc: '',
-            dist: ''
+            dist: 0
           }
         ],
         sType: ''
       },
       newWindow: {
         quantity: '',
-        width: '',
-        height: '',
-        depth: '',
+        width: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        height: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        depth: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
         fType: '',
         fColor: '',
         hardware: [
           {
             type: '',
             fromLoc: '',
-            dist: ''
+            dist: 0
           }
         ],
         wMaterial: ''
       }
     }
+  }
+
+  //Builds an array of reduced fractions and their corresponding decimal values
+  buildFractions = async () => {
+    //initialized to 16 to mimic standard imperial tape measurer increments
+    const denom = 16;
+    let gcd;
+    let fractions = [];
+    function findGCD(a,b){
+      return b ? findGCD(b, a%b) : a;
+    }
+    for(let i = 1; i < denom; i++){
+      gcd = findGCD(i,denom);
+       await fractions.push(
+        {
+          fraction: (i/gcd).toString() + "/" + (denom/gcd).toString(),
+          decimal: ((i/gcd)/(denom/gcd))
+        }
+      )
+    }
+    this.setState(prevState => ({
+      ...prevState,
+      fractions: [...fractions]
+    }))
   }
 
   submitHandler = (event) => {
@@ -53,7 +108,7 @@ class OrderPlace extends Component {
         [totalProd]: [
           ...prevState[totalProd],
           {
-            service: prod,
+            product: prod,
             details: this.state[prod]
           }
         ]
@@ -71,12 +126,11 @@ class OrderPlace extends Component {
     }));  
   }
 
-  //Hardware functions
   handleListChanges = (i, list, event) => {
     const prod = event.target.form.name;
     const prodList = this.state[prod][list];
     let values = [...prodList];
-    
+
     values[i] = {
        ...prodList[i],
        [event.target.name] : event.target.value
@@ -99,8 +153,28 @@ class OrderPlace extends Component {
 
     values.splice(i,1);
     this.setState(prevState => ({[prod]: {
+      ...prevState[prod],
       [list]: values
      }}));
+ }
+
+ dimensionUI = (prod, list) => {
+   return(
+      <div class="form-group col"> 
+          <div class="input-group">
+            <input class="form-control" id={prod + "-" + list} name="int" value={this.state[prod][list][0].int} type="number" onChange={this.handleListChanges.bind(this, 0, list)}/>
+            <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
+              <option selected>none</option>
+              {this.state.fractions.map((frac)=>{
+                return(
+                  <option value={frac.decimal}>{frac.fraction}</option>
+                );
+              })}
+            </select>
+          </div>
+          <label for={prod + "-" + list}>{list.charAt(0).toUpperCase() + list.slice(1)}</label>
+        </div>
+   );
  }
 
  hardwareUI = (prod, list) => {
@@ -108,20 +182,19 @@ class OrderPlace extends Component {
     <div>
       <div class="row">
         <div class="form-group col-4 mt-auto">
-          <label class="mt-2" for="hType">Please select the hardware type:</label>
+          <label class="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
         </div>
         <div class="form-group col-3 mt-auto">
-          <label class="mt-2" for="hFromLoc">Please select the start location:</label>
+          <label class="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
         </div>
         <div class="form-group col-3 mt-auto">
-          <label class="mt-2" for="hDist">Please select the distance from start location:</label>      
+          <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>      
         </div>
       </div>
       {this.state[prod][list].map((val, i) => 
         <div class="row" id={i} key={i}>
           <div class="form-group col-4">
-             <select class="form-control" name="type" id="hType"  value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
-               <option value="none">None</option>
+             <select class="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="plunger">Plunger</option>
                <option value="knife latch">Knife Latch</option>
                <option value="pull tab">Pull Tab</option>
@@ -129,7 +202,7 @@ class OrderPlace extends Component {
              </select>
            </div>
            <div class="form-group col-3 mt-auto">
-             <select class="form-control mt-auto" name="fromLoc" id="hFromLoc" value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
+             <select class="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="BottomLeftToTop">BottomLeftToTop</option>
                <option value="BottomLeftToRight">BottomLeftToRight</option>
                <option value="BottomRightToTop">BottomRightToTop</option>
@@ -141,7 +214,7 @@ class OrderPlace extends Component {
              </select>
            </div>
            <div class="form-group col-3 mt-auto">
-               <input class="form-control" name="dist" value={val.dist||''} id="hDist" placeholder="24 7/16" onChange={this.handleListChanges.bind(this, i, list)}/> 
+               <input class="form-control" name="dist" value={val.dist||0} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
            <div class="col-2 mt-auto mb-3">
              <button class="btn btn-outline-secondary" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}><strong>-</strong></button>
@@ -151,6 +224,10 @@ class OrderPlace extends Component {
       <button class="btn btn-outline-secondary" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}><strong>+</strong></button>  
     </div>
   )   
+ }
+
+ componentDidMount(){
+   this.buildFractions();
  }
 
   render(){
@@ -184,7 +261,9 @@ class OrderPlace extends Component {
                       <NewScreensForm 
                         services={this.props.services} 
                         change={this.changeHandler} 
-                        hardwareUI={this.hardwareUI}/>
+                        hardwareUI={this.hardwareUI}
+                        dimensionUI={this.dimensionUI}
+                      />
                       <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
                     </form>
                   </div>
@@ -195,7 +274,8 @@ class OrderPlace extends Component {
                         services={this.props.services} 
                         change={this.changeHandler}
                         hardwareUI={this.hardwareUI}
-                        />     
+                        dimensionUI={this.dimensionUI}
+                      />     
                       <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add Window(s) to Order</button>                     
                     </form>
                   </div>
@@ -245,7 +325,7 @@ class OrderPlace extends Component {
                                 <strong>Screen(s)</strong>
                               </li>
                               <li class="list-group-item  p-0">
-                                {screen.details.width} x {screen.details.height} x {screen.details.depth} 
+                                {screen.details.width[0].int + screen.details.width[0].decimals} x {screen.details.height[0].int + screen.details.height[0].decimals} x {screen.details.depth[0].int + screen.details.depth[0].decimals} 
                               </li>
                               <li class="list-group-item  p-0">
                                 {screen.details.fColor} 
@@ -256,38 +336,15 @@ class OrderPlace extends Component {
                               <li class="list-group-item  p-0">
                                 {screen.details.sType} 
                               </li>
+                              {screen.details.hardware.map((hardware) => { 
+                                return(
+                                  <li class="list-group-item p-0">
+                                    {hardware.type + " " + hardware.fromLoc + " " + hardware.dist}
+                                  </li>
+                                );
+                              })}
                             </ul> 
-                            <h8 class="col-3">{screen.service}</h8>
-                          </div>
-                        </li>
-                        )
-                      })}
-                      {this.state.windows.map((window) => {
-                        return(
-                        <li class="list-group-item  p-0">
-                          <div class="row">
-                            <div class="col-3">
-                              <h6>{window.details.quantity}</h6>
-                              <img src={this.props.services[1].imgSrc} />
-                            </div>
-                            <ul class="list-group col-3 p-0">
-                              <li class="list-group-item  p-0">
-                                <strong>Screen(s)</strong>
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {window.details.width} x {window.details.height} x {window.details.depth} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {window.details.fColor} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {window.details.fType} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {window.details.wMaterial} 
-                              </li>
-                            </ul> 
-                            <h8 class="col-3">{window.service}</h8>
+                            <h8 class="col-3">{screen.product}</h8>
                           </div>
                         </li>
                         )
