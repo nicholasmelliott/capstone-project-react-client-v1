@@ -10,8 +10,9 @@ class OrderPlace extends Component {
       fractions: [],
       screens: [],
       windows: [],
+      rScreens: [],
       newScreen: {
-        quantity: '',
+        quantity: 0,
         width: [
           {
             int: 0,
@@ -42,7 +43,7 @@ class OrderPlace extends Component {
         sType: ''
       },
       newWindow: {
-        quantity: '',
+        quantity: 0,
         width: [
           {
             int: 0,
@@ -71,7 +72,38 @@ class OrderPlace extends Component {
           }
         ],
         wMaterial: ''
-      }
+      },
+      restoreScreen: {
+        quantity: 0,
+        width: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        height: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        depth: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        fType: '',
+        fColor: '',
+        hardware: [
+          {
+            type: '',
+            fromLoc: '',
+            dist: 0
+          }
+        ],
+        sType: ''
+      },
     }
   }
 
@@ -102,7 +134,7 @@ class OrderPlace extends Component {
   submitHandler = (event) => {
     const totalProd = event.target.id;
     const prod = event.target.name;
-    console.log(this.state.screens, this.state.windows);
+    console.log(this.state.screens, this.state.windows, this.state.rScreens);
     event.preventDefault();
     this.setState(prevState => ({
         [totalProd]: [
@@ -158,11 +190,35 @@ class OrderPlace extends Component {
      }}));
  }
 
+  // Creates quantity UI with multiple quantity options, Creates unique id specific to product 
+ quantityUI =(prod, list) => {
+  return(
+    <div class="form-group row"> 
+      <div class="col-12">
+        <label class="mt-2" for={`${prod}-${list}`}>Please select a quantity:</label>
+        <select class="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler}>
+          {(()=>{
+            let opts = [];
+            for(let i = 0; i <= 30; i++){
+              if(i === 0){
+                opts.push(<option value={i} selected>{i}</option>);
+              }else{
+                opts.push(<option value={i}>{i}</option>);
+              }
+            }
+            return (opts);
+          })()}
+        </select>
+      </div>
+    </div>
+  );
+ }
+
  dimensionUI = (prod, list) => {
    return(
       <div class="form-group col"> 
           <div class="input-group">
-            <input class="form-control" id={prod + "-" + list} name="int" value={this.state[prod][list][0].int} type="number" onChange={this.handleListChanges.bind(this, 0, list)}/>
+            <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="text" onChange={this.handleListChanges.bind(this, 0, list)}/>
             <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
               <option selected>none</option>
               {this.state.fractions.map((frac)=>{
@@ -180,20 +236,11 @@ class OrderPlace extends Component {
  hardwareUI = (prod, list) => {
   return( 
     <div>
-      <div class="row">
-        <div class="form-group col-4 mt-auto">
-          <label class="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
-        </div>
-        <div class="form-group col-3 mt-auto">
-          <label class="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
-        </div>
-        <div class="form-group col-3 mt-auto">
-          <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>      
-        </div>
-      </div>
       {this.state[prod][list].map((val, i) => 
-        <div class="row" id={i} key={i}>
-          <div class="form-group col-4">
+        <div class="p-3 mt-3" id={i} key={i} style={{backgroundColor: '#f8f9fa'}}>
+          <label for={`${prod}-${list}-type`}>Hardware #{i+1}</label>
+          <div class="form-group">
+             <label class="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
              <select class="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="plunger">Plunger</option>
                <option value="knife latch">Knife Latch</option>
@@ -201,7 +248,8 @@ class OrderPlace extends Component {
                <option value="tension spring">Tension Spring</option>
              </select>
            </div>
-           <div class="form-group col-3 mt-auto">
+           <div class="form-group mt-auto">
+             <label class="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
              <select class="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="BottomLeftToTop">BottomLeftToTop</option>
                <option value="BottomLeftToRight">BottomLeftToRight</option>
@@ -213,15 +261,14 @@ class OrderPlace extends Component {
                <option value="TopRightToLeft">TopRightToLeft</option>
              </select>
            </div>
-           <div class="form-group col-3 mt-auto">
-               <input class="form-control" name="dist" value={val.dist||0} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
+           <div class="form-group mt-auto">
+              <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
+              <input class="form-control" name="dist" value={val.dist||0} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
-           <div class="col-2 mt-auto mb-3">
-             <button class="btn btn-outline-secondary" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}><strong>-</strong></button>
-           </div>
-       </div>
+          <button class="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
+        </div>
       )}
-      <button class="btn btn-outline-secondary" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}><strong>+</strong></button>  
+      <button class="btn btn-outline-secondary btn-block footer mt-3" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}>Add New Hardware Item (<strong>+</strong>)</button>  
     </div>
   )   
  }
@@ -261,8 +308,9 @@ class OrderPlace extends Component {
                       <NewScreensForm 
                         services={this.props.services} 
                         change={this.changeHandler} 
-                        hardwareUI={this.hardwareUI}
+                        quantityUI={this.quantityUI}
                         dimensionUI={this.dimensionUI}
+                        hardwareUI={this.hardwareUI}
                       />
                       <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
                     </form>
@@ -273,16 +321,23 @@ class OrderPlace extends Component {
                       <NewWindowsForm 
                         services={this.props.services} 
                         change={this.changeHandler}
-                        hardwareUI={this.hardwareUI}
+                        quantityUI={this.quantityUI}
                         dimensionUI={this.dimensionUI}
+                        hardwareUI={this.hardwareUI}
                       />     
                       <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add Window(s) to Order</button>                     
                     </form>
                   </div>
                   <div id="rScreens">
                     <hr/>
-                    <form>
-                      <RestoreScreensForm services={this.props.services}/>  
+                    <form onSubmit={this.submitHandler} id="rScreens" name="restoreScreen">
+                      <RestoreScreensForm 
+                      services={this.props.services}
+                      change={this.changeHandler}
+                      quantityUI={this.quantityUI}
+                      dimensionUI={this.dimensionUI}
+                      hardwareUI={this.hardwareUI}
+                    />  
                       <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add <i>To-Be-Restored</i> Screen(s) to Order</button>
                     </form>
                   </div>

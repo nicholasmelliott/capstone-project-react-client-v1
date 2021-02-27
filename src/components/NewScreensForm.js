@@ -1,7 +1,7 @@
 import React from 'react';
 
 const prod = "newScreen";
-const NewScreensForm = ({services, change, hardwareUI, dimensionUI}) => ( 
+const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI}) => ( 
   <div> 
     <div class="row">
       <div class="col-8">
@@ -12,38 +12,20 @@ const NewScreensForm = ({services, change, hardwareUI, dimensionUI}) => (
       </div>
     </div>
     <h6>Quantity</h6>      
-    <div class="form-group row"> 
-      <div class="col-12">
-        <label class="mt-2" for="quantity">Please select a quantity:</label>
-        <select class="form-control" id="quantity" name="quantity" onChange={change}>
-          {/* Creates multiple quantity options */}
-          {(()=>{
-            let opt = [];
-            for(let i = 1; i <= 30; i++){
-              if(i === 1){
-                opt.push(<option value={i} selected>{i}</option>);
-              }else{
-                opt.push(<option value={i}>{i}</option>);
-              }
-            }
-            return (opt);
-          })()}
-        </select>
-      </div>
-    </div>
+    {quantityUI(prod, "quantity")}
     <hr/>
     <h6>Dimensions</h6>
     <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label class="form-row ml-1" for="width">Please enter the screen's dimensions (in inches):</label>
+      <label class="form-row ml-1" for="width">Please enter the screen's dimensions (in inches and/or fractional inches):</label>
     </div>
-    <div class="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <div class="form-row mt-2">
-        {dimensionUI(prod,'width')}
-        <div class="form-group col-1">X </div>
-        {dimensionUI(prod,'height')}
-        <div class="form-group col-1">X   </div>
-        {dimensionUI(prod, 'depth')}
-      </div>
+    <div class="form-row mt-2">
+      {dimensionUI(prod,'width')}
+    </div>
+    <div class="form-row mt-2">
+      {dimensionUI(prod,'height')}
+    </div>
+    <div class="form-row mt-2">
+      {dimensionUI(prod, 'depth')}
     </div>
     <hr/>
     <h6>Frame</h6>
