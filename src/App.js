@@ -82,11 +82,8 @@ class App extends Component {
 
     return(
       <BrowserRouter>
-          <div height="70px" width="100%" />
           <div>
               <Header paths={this.state.navOptions} search={this.getPhotos} />
-              {/* <ServicesMain services={this.state.services}/>
-              <OrdersMain orders={this.state.orders}/> */}
               <Switch>
                 <Route exact path="/" render={ () => (           
                     <> 
