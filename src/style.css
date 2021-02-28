@@ -10,7 +10,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: 3000px;
+  height: 1000px;
 }
 
 
@@ -38,24 +38,24 @@ ul {
 .card {
   margin-left: 2px;
   margin-right: 2px;
-  /* border: 2px solid #B5B5B5; */
   border-radius: 5px;
   color: #EBEBEB;
-  /* background-color: rgba(255, 255, 255, 0); */
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0,0,0,0));
+  background-color: rgba(255, 255, 255, 0);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 1));
+  transition: all .1s linear;
+}
+
+.card:hover {
+  border: 1px solid white;
 }
 
 .card-body {
   z-index: 1;
 }
 
-.service-card-footer {
-  /* background-image: linear-gradient(black,  rgba(255, 255, 255, 0.137));
-  background-image: linear-gradient(rgba(255, 255, 255, 0.137),black); */
-}
-
 .services-main {
-  margin-top: 40px;
+  /* margin top accounts for  navbar */
+  margin-top: 110px;
   margin-bottom: 40px;
 }
 
@@ -65,7 +65,8 @@ ul {
 
 .services-small {
   text-align: center;
-  margin-top: 10px;
+  /*mt accounts for navbar */
+  margin-top: 90px;
 }
 
 .orders-small {
@@ -102,7 +103,7 @@ ul {
   text-align: center;
   padding-top: 15px;
   height: 50px;
-  background-color: #c8e9d7;
+  background-color: white;
   color: black;
   border: 2px solid black;
   /* border-bottom: none; */
@@ -116,7 +117,7 @@ ul {
   height: auto;
   padding: 0;
   padding-bottom: 10px;
-  background-color: #c8e9d7;
+  background-color: white;
   color: black;
   margin-top: 1px;
 }
@@ -133,7 +134,7 @@ ul {
   text-align: center;
   padding-top: 15px;
   height: 50px;
-  background-color: white;
+  background-color: #EBEBEB;
   border: 2px solid black;
   /* border-bottom: none; */
   border-left: none;
@@ -146,7 +147,7 @@ ul {
   padding: 0;
   padding-bottom: 10px;
   height: auto;
-  background-color: white;
+  background-color: #EBEBEB;
   margin-top: 10px;
   margin-top: 1px;
 }
@@ -159,18 +160,7 @@ h6 {
   margin: 0;
 }
 
-/* orders.pug styling */
-
-.orders-header {
-  text-align: center;
-  padding-top: 15px;
-  height: 50px;
-  background-color: #8CD5FF;
-  color: black;
-  border: 2px solid white;
-  border-radius: 15px 15px 0px 0px;
-  border-bottom: none;
-}
+/* OrderPlace styling */
 
 .orders-body {
   background-color: white;
@@ -194,9 +184,3 @@ h6 {
   overflow: auto;
   height: 800px;
 }
-
-/* .img-form {
-  background-image: radial-gradient( black, rgba(255, 255, 255, 0.137));
-  background-image: linear-gradient( 120deg, black,rgba(200, 233, 215, .137));
-  background-color: #c8e9d7;
-} */
