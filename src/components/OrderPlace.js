@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import NewScreensForm from "./NewScreensForm";
 import NewWindowsForm from "./NewWindowsForm";
 import RestoreScreensForm from "./RestoreScreensForm";
+import RestoreWindowsForm from "./RestoreWindowsForm";
+import CustomGlassForm from "./CustomGlassForm";
+import cart from "../cart4.svg";
 
 class OrderPlace extends Component {
   constructor(props) {
@@ -11,6 +14,8 @@ class OrderPlace extends Component {
       screens: [],
       windows: [],
       rScreens: [],
+      rWindows: [],
+      cGlass: [],
       newScreen: {
         quantity: 0,
         width: [
@@ -104,6 +109,53 @@ class OrderPlace extends Component {
         ],
         sType: ''
       },
+      restoreWindow: {
+        quantity: 0,
+        width: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        height: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        depth: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        fType: '',
+        fColor: '',
+        hardware: [
+          {
+            type: '',
+            fromLoc: '',
+            dist: 0
+          }
+        ],
+        sType: ''
+      },
+      customGlass: {
+        quantity: 0,
+        width: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        height: [
+          {
+            int: 0,
+            decimals: 0
+          }
+        ],
+        material: ''
+      },
     }
   }
 
@@ -134,7 +186,7 @@ class OrderPlace extends Component {
   submitHandler = (event) => {
     const totalProd = event.target.id;
     const prod = event.target.name;
-    console.log(this.state.screens, this.state.windows, this.state.rScreens);
+    
     event.preventDefault();
     this.setState(prevState => ({
         [totalProd]: [
@@ -145,6 +197,11 @@ class OrderPlace extends Component {
           }
         ]
     }));
+    console.log(this.state.screens, 
+                this.state.windows, 
+                this.state.rScreens, 
+                this.state.rWindows,
+                this.state.cGlass);
   }
 
   changeHandler = (event) => {
@@ -220,7 +277,7 @@ class OrderPlace extends Component {
           <div class="input-group">
             <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="text" onChange={this.handleListChanges.bind(this, 0, list)}/>
             <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
-              <option selected>none</option>
+              <option selected>( No Fract. Inches )</option>
               {this.state.fractions.map((frac)=>{
                 return(
                   <option value={frac.decimal}>{frac.fraction}</option>
@@ -233,6 +290,7 @@ class OrderPlace extends Component {
    );
  }
 
+ //generates hardware field where hardware items can be dynamically added or removed
  hardwareUI = (prod, list) => {
   return( 
     <div>
@@ -268,9 +326,69 @@ class OrderPlace extends Component {
           <button class="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
         </div>
       )}
-      <button class="btn btn-outline-secondary btn-block footer mt-3" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}>Add New Hardware Item (<strong>+</strong>)</button>  
+      <div class="pl-3 pr-3 mt-3">
+        <button class="btn btn-secondary btn-block footer mt-3" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}>Add New Hardware Item (<strong>+</strong>)</button>  
+      </div>
     </div>
   )   
+ }
+
+ cartUI = (prods, serviceNum) => {
+   const allDim = (prods, prod) => {
+     if(prods !== 'cGlass'){
+      return `${prod.details.width[0].int + prod.details.width[0].decimals} x ${prod.details.height[0].int + prod.details.height[0].decimals} x ${prod.details.depth[0].int + prod.details.depth[0].decimals}`;  
+     }else{
+      return `${prod.details.width[0].int + prod.details.width[0].decimals} x ${prod.details.height[0].int + prod.details.height[0].decimals}`;
+     }
+   }
+   return(
+     <div>
+       {this.state[prods].map((prod) => {
+         return(
+         <li class="list-group-item p-0">
+           <div class="row">
+             <div class="col-3">
+               <h6>{prod.details.quantity}</h6>
+             </div>
+             <ul class="list-group col-3 p-0">
+               <li class="list-group-item  p-0">
+                 <strong>{prods}</strong> 
+               </li>
+               <li class="list-group-item  p-0">
+                 {allDim(prods, prod)}
+               </li>
+               <li class="list-group-item  p-0">
+                 {prod.details.fColor} 
+               </li>
+               <li class="list-group-item  p-0">
+                 {prod.details.fType} 
+               </li>
+               <li class="list-group-item  p-0">
+                 {prod.details.material} 
+               </li>
+               {(()=>{
+                 if(prods !== 'cGlass'){
+                  prod.details.hardware.map((hardware) => { 
+                    return(
+                      <li class="list-group-item p-0">
+                        {hardware.type + " " + hardware.fromLoc + " " + hardware.dist}
+                      </li>
+                    );
+                  })
+                 }
+                 
+               })()}
+             </ul>
+             <div class="col-3">
+             <h8 class="row">{prod.product}</h8>
+             <img class="row" height="70%" src={this.props.services[serviceNum].imgSrc} />
+             </div> 
+           </div>
+         </li>
+         )
+       })}
+     </div>
+   );
  }
 
  componentDidMount(){
@@ -289,7 +407,7 @@ class OrderPlace extends Component {
                         return (
                           <div>  
                               <li class="nav-item">
-                                  <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}>
+                                  <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}  style={{color: "black"}}>
                                     <p class="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
                                     <img src={service.imgSrc} />
                                   </a>
@@ -297,13 +415,19 @@ class OrderPlace extends Component {
                           </div>
                         );
                       })}
+                      <li class="nav-item">
+                        <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#cart"}>
+                          <img src={cart} />
+                        </a>
+                      </li>
                   </ul>
               </nav>
             </div>
             <div class="orders-form-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">   
               <div class="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
-                <div class="col-lg-4 order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
+                <div class="col-lg-5 order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
+                    <hr/>
                     <form onSubmit={this.submitHandler} id="screens" name="newScreen">
                       <NewScreensForm 
                         services={this.props.services} 
@@ -325,87 +449,67 @@ class OrderPlace extends Component {
                         dimensionUI={this.dimensionUI}
                         hardwareUI={this.hardwareUI}
                       />     
-                      <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add Window(s) to Order</button>                     
+                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Window(s) to Order</button>                     
                     </form>
                   </div>
                   <div id="rScreens">
                     <hr/>
                     <form onSubmit={this.submitHandler} id="rScreens" name="restoreScreen">
                       <RestoreScreensForm 
-                      services={this.props.services}
-                      change={this.changeHandler}
-                      quantityUI={this.quantityUI}
-                      dimensionUI={this.dimensionUI}
-                      hardwareUI={this.hardwareUI}
-                    />  
-                      <button class="btn btn-primary btn-block footer mb-2" id="nScreenAddBtn" type="submit">Add <i>To-Be-Restored</i> Screen(s) to Order</button>
+                        services={this.props.services}
+                        change={this.changeHandler}
+                        quantityUI={this.quantityUI}
+                        dimensionUI={this.dimensionUI}
+                        hardwareUI={this.hardwareUI}
+                      />  
+                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Screen(s) to Order</button>
                     </form>
                   </div>
                   <div id="rWindows">
                     <hr/>
-                    <form>
-                      
+                    <form onSubmit={this.submitHandler} id="rWindows" name="restoreWindow">
+                      <RestoreWindowsForm 
+                        services={this.props.services}
+                        change={this.changeHandler}
+                        quantityUI={this.quantityUI}
+                        dimensionUI={this.dimensionUI}
+                        hardwareUI={this.hardwareUI}
+                      />  
+                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Window(s) to Order</button>
                     </form>
                   </div>
                   <div id="cGlass">
                     <hr/>
-                    <form>
-                    {/* <!--include cutGlassForm --> */}
+                    <form onSubmit={this.submitHandler} id="cGlass" name="customGlass">
+                      <CustomGlassForm 
+                        services={this.props.services}
+                        change={this.changeHandler}
+                        quantityUI={this.quantityUI}
+                        dimensionUI={this.dimensionUI}
+                      />  
+                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>Custom</i> Glass to Order</button>
                     </form>
+                    <hr/>
                   </div>
-                </div>
-                <div class="row fixed-bottom">
-                    <div class="col-lg-5"/>
-                    <div class="col-lg-6" style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
-                     <h1>CART</h1>
-                     <ul class="list-group">
-                      <li class="list-group-item  p-0">
-                        <div class="row">
-                          <h6 class="col-3">Quantity</h6>
-                          <h6 class="col-3">Product</h6>
-                          <h6 class="col-3">Service</h6>
-                          <h6 class="col-3">Price</h6>
-                        </div>
-                      </li>
-                      {this.state.screens.map((screen) => {
-                        return(
-                        <li class="list-group-item p-0">
-                          <div class="row">
-                            <div class="col-3">
-                              <h6>{screen.details.quantity}</h6>
-                              <img src={this.props.services[0].imgSrc} />
-                            </div>
-                            <ul class="list-group col-3 p-0">
-                              <li class="list-group-item  p-0">
-                                <strong>Screen(s)</strong>
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {screen.details.width[0].int + screen.details.width[0].decimals} x {screen.details.height[0].int + screen.details.height[0].decimals} x {screen.details.depth[0].int + screen.details.depth[0].decimals} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {screen.details.fColor} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {screen.details.fType} 
-                              </li>
-                              <li class="list-group-item  p-0">
-                                {screen.details.sType} 
-                              </li>
-                              {screen.details.hardware.map((hardware) => { 
-                                return(
-                                  <li class="list-group-item p-0">
-                                    {hardware.type + " " + hardware.fromLoc + " " + hardware.dist}
-                                  </li>
-                                );
-                              })}
-                            </ul> 
-                            <h8 class="col-3">{screen.product}</h8>
-                          </div>
-                        </li>
-                        )
-                      })}
-                     </ul>     
-                  </div>
+                  <div id="cart" style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
+                    <h1>CART</h1>
+                    <ul class="list-group">
+                     <li class="list-group-item  p-0">
+                       <div class="row">
+                         <h6 class="col-3">Quantity</h6>
+                         <h6 class="col-3">Product</h6>
+                         <h6 class="col-3">Service</h6>
+                         <h6 class="col-3">Price</h6>
+                       </div>
+                     </li>
+                     {this.cartUI('screens', 0)}
+                     {this.cartUI('windows', 1)}
+                     {this.cartUI('rScreens', 2)}
+                     {this.cartUI('rWindows', 3)}
+                     {this.cartUI('cGlass', 4)}
+                    </ul>
+                  <button class="btn btn-primary btn-block footer mb-2" type="submit">Place Order</button>
+                  </div>  
                 </div>
               </div>
             </div>
