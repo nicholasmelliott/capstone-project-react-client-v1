@@ -183,6 +183,31 @@ class OrderPlace extends Component {
     }))
   }
 
+  submitOrderHandler = (event) => {
+    event.preventDefault();
+    fetch('/orders', {
+     method: 'post',
+     headers: {'Content-Type':'application/json'},
+     body:  JSON.stringify([
+       this.state.screens,
+       this.state.windows,
+       this.state.rScreens,
+       this.state.rWindows,
+       this.state.cGlass
+     ]) 
+    }).then(()=>{
+      this.setState({
+        screens: [],
+        windows: [],
+        rScreens: [],
+        rWindows: [],
+        cGlass: []
+      });    
+      console.log('Submitted!');
+    });
+
+  }
+
   submitHandler = (event) => {
     const totalProd = event.target.id;
     const prod = event.target.name;
@@ -258,9 +283,9 @@ class OrderPlace extends Component {
             let opts = [];
             for(let i = 0; i <= 30; i++){
               if(i === 0){
-                opts.push(<option value={i} selected>{i}</option>);
+                opts.push(<option key={i} value={i}>{i}</option>);
               }else{
-                opts.push(<option value={i}>{i}</option>);
+                opts.push(<option key={i} value={i}>{i}</option>);
               }
             }
             return (opts);
@@ -277,10 +302,10 @@ class OrderPlace extends Component {
           <div class="input-group">
             <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="text" onChange={this.handleListChanges.bind(this, 0, list)}/>
             <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
-              <option selected>( No Fract. Inches )</option>
-              {this.state.fractions.map((frac)=>{
+              <option>( No Fract. Inches )</option>
+              {this.state.fractions.map((frac, i)=>{
                 return(
-                  <option value={frac.decimal}>{frac.fraction}</option>
+                  <option key={i} value={frac.decimal}>{frac.fraction}</option>
                 );
               })}
             </select>
@@ -343,9 +368,9 @@ class OrderPlace extends Component {
    }
    return(
      <div>
-       {this.state[prods].map((prod) => {
+       {this.state[prods].map((prod, i) => {
          return(
-         <li class="list-group-item p-0">
+         <li key={i} class="list-group-item p-0">
            <div class="row">
              <div class="col-3">
                <h6>{prod.details.quantity}</h6>
@@ -368,9 +393,9 @@ class OrderPlace extends Component {
                </li>
                {(()=>{
                  if(prods !== 'cGlass'){
-                  prod.details.hardware.map((hardware) => { 
+                  prod.details.hardware.map((hardware, i) => { 
                     return(
-                      <li class="list-group-item p-0">
+                      <li key={i} class="list-group-item p-0">
                         {hardware.type + " " + hardware.fromLoc + " " + hardware.dist}
                       </li>
                     );
@@ -403,16 +428,15 @@ class OrderPlace extends Component {
             <div class="order-list-main">     
               <nav class="navbar navbar-light bg-light px-3 position-relative justify-content-around" id="navbar-example2" role="tablist">
                   <ul class="nav nav-tabs">
-                      {this.props.services.map((service)=>{
+                      {/* Creates nav items for order form. */}
+                      {this.props.services.map((service, i)=>{
                         return (
-                          <div>  
-                              <li class="nav-item">
-                                  <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}  style={{color: "black"}}>
-                                    <p class="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
-                                    <img src={service.imgSrc} />
-                                  </a>
-                              </li>
-                          </div>
+                          <li class="nav-item" key={i}>
+                              <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}  style={{color: "black"}}>
+                                <p class="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
+                                <img src={service.imgSrc} />
+                              </a>
+                          </li>
                         );
                       })}
                       <li class="nav-item">
@@ -427,7 +451,7 @@ class OrderPlace extends Component {
               <div class="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
                 <div class="col-lg-5 order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="screens" name="newScreen">
                       <NewScreensForm 
                         services={this.props.services} 
@@ -440,7 +464,7 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                   <div id="bWindows">
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="windows" name="newWindow">
                       <NewWindowsForm 
                         services={this.props.services} 
@@ -453,7 +477,7 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                   <div id="rScreens">
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="rScreens" name="restoreScreen">
                       <RestoreScreensForm 
                         services={this.props.services}
@@ -466,7 +490,7 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                   <div id="rWindows">
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="rWindows" name="restoreWindow">
                       <RestoreWindowsForm 
                         services={this.props.services}
@@ -479,7 +503,7 @@ class OrderPlace extends Component {
                     </form>
                   </div>
                   <div id="cGlass">
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="cGlass" name="customGlass">
                       <CustomGlassForm 
                         services={this.props.services}
@@ -489,7 +513,7 @@ class OrderPlace extends Component {
                       />  
                       <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>Custom</i> Glass to Order</button>
                     </form>
-                    <hr/>
+                    <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                   </div>
                   <div id="cart" style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
                     <h1>CART</h1>
@@ -508,7 +532,7 @@ class OrderPlace extends Component {
                      {this.cartUI('rWindows', 3)}
                      {this.cartUI('cGlass', 4)}
                     </ul>
-                  <button class="btn btn-primary btn-block footer mb-2" type="submit">Place Order</button>
+                  <button class="btn btn-success btn-block footer mb-2" onClick={this.submitOrderHandler}>Place Order</button>
                   </div>  
                 </div>
               </div>
