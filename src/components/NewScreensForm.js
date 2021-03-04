@@ -34,7 +34,7 @@ const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI})
         <div class="form-group"> 
           <label class="mt-2" for="frameType">Please select the frame type:</label>
           <select class="form-control" id="frameType" name="fType" onChange={change}>
-            <option value="standard" selected>Standard</option>
+            <option value="standard">Standard</option>
             <option value="storm">Storm</option>
           </select>
         </div>
