@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Nav = ({ paths }) => {
+const Nav = ({ paths, weather }) => {
 
   	return (
 	    <nav className="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm">
@@ -19,8 +19,17 @@ const Nav = ({ paths }) => {
                     <li className="nav-item"><a className="nav-link" href="/services">Services</a></li>
                     <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0"><input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" /></form>
-                <form className="form-inline"><a className="btn btn-outline-primary ml-2" type="button" href="login">Log In</a><a className="btn btn-primary ml-2" type="button" href="signup">Sign Up</a><a className="nav-link" href="contact"> <img className="ml-2" src="phone.svg" width="30px" height="30px" /></a></form>
+                <img className="mr-3" height="20px" src={weather} />
+                <form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" />
+                </form>
+                <form className="form-inline">
+                    <a className="btn btn-outline-primary ml-2" type="button" href="login">Log In</a>
+                    <a className="btn btn-primary ml-2" type="button" href="signup">Sign Up</a>
+                    <a className="nav-link" href="contact"> 
+                        <img className="ml-2" src="phone.svg" width="30px" height="30px" />
+                    </a>
+                </form>
             </div>
       </nav>
 	);  

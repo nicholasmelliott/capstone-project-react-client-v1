@@ -29,6 +29,7 @@ class App extends Component {
     navThreePhotos: [],
     searched: [],
     loading: false,
+    weatherIMG: '',
     services: [
       {
         type: "Build New Screens",
@@ -72,10 +73,17 @@ class App extends Component {
     fetch('/orders')
       .then(res => res.json())
       .then(orders => {
-        console.log(orders);
         this.setState({ orders });
       });
-  }
+  
+    fetch('/weather')
+      .then(res => {
+        res.json()
+          .then(data => {
+            this.setState({ weatherIMG: data.weatherIMG });
+          })
+      });
+    }
 
   render(){
     const loading = <p> Loading... </p>;
@@ -83,7 +91,7 @@ class App extends Component {
     return(
       <BrowserRouter>
           <div>
-              <Header paths={this.state.navOptions} search={this.getPhotos} />
+              <Header paths={this.state.navOptions} search={this.getPhotos} weather={this.state.weatherIMG} />
               <Switch>
                 <Route exact path="/" render={ () => (           
                     <> 
