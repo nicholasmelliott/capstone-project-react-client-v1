@@ -5,11 +5,15 @@ import RestoreScreensForm from "./RestoreScreensForm";
 import RestoreWindowsForm from "./RestoreWindowsForm";
 import CustomGlassForm from "./CustomGlassForm";
 import cart from "../cart4.svg";
+import arrowUp from "../chevron-compact-up.svg";
+import arrowDown from "../chevron-compact-down.svg";
 
 class OrderPlace extends Component {
   constructor(props) {
     super(props);
+    this.cartRef = React.createRef();
     this.state = {
+      arrowImgSrc: arrowUp,
       fractions: [],
       screens: [],
       windows: [],
@@ -358,7 +362,7 @@ class OrderPlace extends Component {
   )   
  }
 
- cartUI = (prods, serviceNum) => {
+ cartItemUI = (prods, serviceNum) => {
    const allDim = (prods, prod) => {
      if(prods !== 'cGlass'){
       return `${prod.details.width[0].int + prod.details.width[0].decimals} x ${prod.details.height[0].int + prod.details.height[0].decimals} x ${prod.details.depth[0].int + prod.details.depth[0].decimals}`;  
@@ -370,7 +374,7 @@ class OrderPlace extends Component {
      <div>
        {this.state[prods].map((prod, i) => {
          return(
-         <li key={i} class="list-group-item p-0">
+         <li key={i} class="list-group-item">
            <div class="row">
              <div class="col-3">
                <h6>{prod.details.quantity}</h6>
@@ -416,6 +420,49 @@ class OrderPlace extends Component {
    );
  }
 
+ // Creates complete cart ui. Size (large or small) determines max height of cart   
+ cartUI = (size) => {
+   return(
+    <div>
+      <div class="cart-header d-none d-lg-block">
+        <h1>CART</h1>
+      </div>
+      <div class="cart-body">
+        <ul class="list-group">
+          <li class="list-group-item  p-0">
+            <div class="row">
+              <h6 class="col-3">Quantity</h6>
+              <h6 class="col-3">Product</h6>
+              <h6 class="col-3">Service</h6>
+              <h6 class="col-3">Price</h6>
+            </div>
+          </li>
+        </ul>
+        <ul class={`ul-${size}`}>
+         {this.cartItemUI('screens', 0)}
+         {this.cartItemUI('windows', 1)}
+         {this.cartItemUI('rScreens', 2)}
+         {this.cartItemUI('rWindows', 3)}
+         {this.cartItemUI('cGlass', 4)}
+        </ul>
+        <button class="btn btn-success btn-block footer mb-2 mt-3" onClick={this.submitOrderHandler}>Place Order</button>
+      </div>  
+    </div>
+   );
+ }
+
+ cartArrowDisplay = () => {     
+  if(this.cartRef.current.className === "collapse"){
+    this.setState({
+      arrowImgSrc: arrowDown
+    })
+  }else{
+    this.setState({
+      arrowImgSrc: arrowUp
+    })
+  }
+ }
+
  componentDidMount(){
    this.buildFractions();
  }
@@ -424,7 +471,7 @@ class OrderPlace extends Component {
     return(
 	    <div style={{marginTop: 50 + "px"}}>
         <div class="row m-0" style={{paddingLeft:10 + "px", paddingRight: 10 + "px"}}>
-          <div class="col orders-body">
+          <div class="col-lg-8 orders-body">
             <div class="order-list-main">     
               <nav class="navbar navbar-light bg-light px-3 position-relative justify-content-around" id="navbar-example2" role="tablist">
                   <ul class="nav nav-tabs">
@@ -439,17 +486,12 @@ class OrderPlace extends Component {
                           </li>
                         );
                       })}
-                      <li class="nav-item">
-                        <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#cart"}>
-                          <img src={cart} />
-                        </a>
-                      </li>
                   </ul>
               </nav>
             </div>
             <div class="orders-form-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">   
               <div class="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
-                <div class="col-lg-5 order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
+                <div class="col-lg order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler} id="screens" name="newScreen">
@@ -515,28 +557,25 @@ class OrderPlace extends Component {
                     </form>
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                   </div>
-                  <div id="cart" style={{backgroundColor: 'white', borderColor: 'black', borderStyle: 'solid', borderWidth: 2 + 'px'}}>
-                    <h1>CART</h1>
-                    <ul class="list-group">
-                     <li class="list-group-item  p-0">
-                       <div class="row">
-                         <h6 class="col-3">Quantity</h6>
-                         <h6 class="col-3">Product</h6>
-                         <h6 class="col-3">Service</h6>
-                         <h6 class="col-3">Price</h6>
-                       </div>
-                     </li>
-                     {this.cartUI('screens', 0)}
-                     {this.cartUI('windows', 1)}
-                     {this.cartUI('rScreens', 2)}
-                     {this.cartUI('rWindows', 3)}
-                     {this.cartUI('cGlass', 4)}
-                    </ul>
-                  <button class="btn btn-success btn-block footer mb-2" onClick={this.submitOrderHandler}>Place Order</button>
-                  </div>  
                 </div>
               </div>
             </div>
+          </div>
+          {/* Cart displayed on medium and below displays*/}
+          <div class="fixed-bottom d-lg-none"  style={{backgroundColor: 'rgba(255,255,255,0)'}}>
+            <nav class="navbar navbar-light bg-light justify-content-center">
+              <button class="navbar-toggler" type="button" onClick={this.cartArrowDisplay} data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img class="m-1" src={cart}/>
+                <img class="m-1" src={this.state.arrowImgSrc}/>
+              </button>
+            </nav>
+            <div class="collapse" ref={this.cartRef} id="navbarToggleExternalContent">
+              {this.cartUI('small')}
+            </div>
+          </div>
+          {/* Cart displayed on large and above displays*/}
+          <div class="col-4 pl-0.5 mt-3 pr-0 d-none d-lg-block" style={{backgroundColor: 'rgba(255,255,255,0)'}}>
+            {this.cartUI('large')}
           </div>
         </div>
       </div> 
