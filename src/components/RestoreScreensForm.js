@@ -34,6 +34,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
         <div class="form-group"> 
           <label class="mt-2" for="rSFType">Please select the frame type:</label>
           <select class="form-control" id="rSFType" name="frameType" onChange={change}>
+            <option value="">...</option>
             <option value="standard">Standard</option>
             <option value="storm">Storm</option>
           </select>
@@ -43,6 +44,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
         <div class="form-group"> 
           <label class="mt-2" for="rSFColor">Please select the frame color:</label>
           <select class="form-control" id="rSFColor" name="frameColor" onChange={change}>
+            <option value="">...</option>
             <option value="white">White</option>
             <option value="bronze">Bronze</option>
             <option value="mill">Mill</option>
@@ -62,6 +64,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
       <div class="form-group col-12"> 
         <label class="mt-2" for="rSType">Please select the screen color and material:</label>
         <select class="form-control" id="rSType" name="sType" onChange={change}>
+          <option value="">...</option>
           <option value="charFib">Charcoal Fiberglass</option>
           <option value="grayFib">Gray Fiberglass</option>
           <option value="charAlum">Charcoal Aluminum</option>

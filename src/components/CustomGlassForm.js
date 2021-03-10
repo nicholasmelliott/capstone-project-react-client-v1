@@ -30,6 +30,7 @@ const CustomGlassForm = ({ services, change, quantityUI, dimensionUI}) => (
       <div class="form-group col-12"> 
         <label class="mt-2" for="rWMaterial">Please select the material:</label>
         <select class="form-control" id="WMaterial" name="material" onChange={change}>
+          <option value="">...</option>
           <option value="SSAnealGlass">Single Strength Annealed Glass</option>
           <option value="DSAnealGlass">Double Strength Annealed Glass</option>
           <option value="1/8AcrylSheet">1/8" Acyrlic Sheet</option>

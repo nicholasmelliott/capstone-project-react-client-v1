@@ -21,23 +21,23 @@ class OrderPlace extends Component {
       rWindows: [],
       cGlass: [],
       newScreen: {
-        quantity: 0,
+        quantity: '',
         width: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         height: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         depth: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         fType: '',
@@ -46,29 +46,29 @@ class OrderPlace extends Component {
           {
             type: '',
             fromLoc: '',
-            dist: 0
+            dist:''
           }
         ],
         sType: ''
       },
       newWindow: {
-        quantity: 0,
+        quantity: '',
         width: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         height: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         depth: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         fType: '',
@@ -77,29 +77,29 @@ class OrderPlace extends Component {
           {
             type: '',
             fromLoc: '',
-            dist: 0
+            dist: ''
           }
         ],
         wMaterial: ''
       },
       restoreScreen: {
-        quantity: 0,
+        quantity: '',
         width: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         height: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         depth: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         fType: '',
@@ -108,29 +108,29 @@ class OrderPlace extends Component {
           {
             type: '',
             fromLoc: '',
-            dist: 0
+            dist: ''
           }
         ],
         sType: ''
       },
       restoreWindow: {
-        quantity: 0,
+        quantity: '',
         width: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         height: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         depth: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         fType: '',
@@ -139,23 +139,23 @@ class OrderPlace extends Component {
           {
             type: '',
             fromLoc: '',
-            dist: 0
+            dist: ''
           }
         ],
         sType: ''
       },
       customGlass: {
-        quantity: 0,
+        quantity: '',
         width: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         height: [
           {
-            int: 0,
-            decimals: 0
+            int: '',
+            decimals: ''
           }
         ],
         material: ''
@@ -287,7 +287,7 @@ class OrderPlace extends Component {
             let opts = [];
             for(let i = 0; i <= 30; i++){
               if(i === 0){
-                opts.push(<option key={i} value={i}>{i}</option>);
+                opts.push(<option key={i} value="">...</option>);
               }else{
                 opts.push(<option key={i} value={i}>{i}</option>);
               }
@@ -306,7 +306,7 @@ class OrderPlace extends Component {
           <div class="input-group">
             <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="text" onChange={this.handleListChanges.bind(this, 0, list)}/>
             <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
-              <option>( No Fract. Inches )</option>
+              <option value="">Fractional Inches... </option>
               {this.state.fractions.map((frac, i)=>{
                 return(
                   <option key={i} value={frac.decimal}>{frac.fraction}</option>
@@ -329,6 +329,7 @@ class OrderPlace extends Component {
           <div class="form-group">
              <label class="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
              <select class="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
+               <option value="">...</option>
                <option value="plunger">Plunger</option>
                <option value="knife latch">Knife Latch</option>
                <option value="pull tab">Pull Tab</option>
@@ -338,6 +339,7 @@ class OrderPlace extends Component {
            <div class="form-group mt-auto">
              <label class="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
              <select class="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
+               <option value="">...</option>
                <option value="BottomLeftToTop">BottomLeftToTop</option>
                <option value="BottomLeftToRight">BottomLeftToRight</option>
                <option value="BottomRightToTop">BottomRightToTop</option>
@@ -350,7 +352,7 @@ class OrderPlace extends Component {
            </div>
            <div class="form-group mt-auto">
               <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
-              <input class="form-control" name="dist" value={val.dist||0} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
+              <input class="form-control" name="dist" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
           <button class="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
         </div>
@@ -365,9 +367,12 @@ class OrderPlace extends Component {
  cartItemUI = (prods, serviceNum) => {
    const allDim = (prods, prod) => {
      if(prods !== 'cGlass'){
-      return `${prod.details.width[0].int + prod.details.width[0].decimals} x ${prod.details.height[0].int + prod.details.height[0].decimals} x ${prod.details.depth[0].int + prod.details.depth[0].decimals}`;  
+      return `${parseInt(prod.details.width[0].int) + parseFloat(prod.details.width[0].decimals)} x 
+      ${parseInt(prod.details.height[0].int) + parseFloat(prod.details.height[0].decimals)} x 
+      ${parseInt(prod.details.depth[0].int) + parseFloat(prod.details.depth[0].decimals)}`;  
      }else{
-      return `${prod.details.width[0].int + prod.details.width[0].decimals} x ${prod.details.height[0].int + prod.details.height[0].decimals}`;
+      return `${parseInt(prod.details.width[0].int) + parseFloat(prod.details.width[0].decimals)} x 
+      ${parseInt(prod.details.height[0].int) + parseFloat(prod.details.height[0].decimals)}`;
      }
    }
    return(
