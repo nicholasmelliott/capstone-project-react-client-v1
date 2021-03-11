@@ -11,6 +11,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   height: auto;
+  width: 100%;
+ position: fixed;
 }
 
 
@@ -182,7 +184,8 @@ h6 {
 .orders-form-body {
   position: relative;
   overflow: auto;
-  height: 800px;
+  height: 900px;
+  padding-bottom: 50px;
 }
 
 .cart {
