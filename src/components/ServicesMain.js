@@ -12,7 +12,11 @@ const ServicesMain = ({ services , loading }) => (
                 <h5 class="card-title">{service.type}</h5>
                 <p class="card-text">{service.desc}</p>
                </div>
-               <div class="card-footer text-muted service-card-footer"><a class="btn btn-outline-secondary font-weight-bold btn-md btn-block footer service-btn" href="/orders">{service.btn}</a></div>
+               <div class="card-footer text-muted service-card-footer">
+                 <a class="btn btn-outline-secondary font-weight-bold btn-md btn-block footer service-btn" href={`/orders#${service.href}`}>
+                   {service.btn}
+                 </a>
+               </div>
             </div>
             );
           })} 
@@ -23,7 +27,7 @@ const ServicesMain = ({ services , loading }) => (
         {services.map((service)=>{
           return (
             <div class="col-4 content-justify-center mt-2">
-              <a href="/orders">
+              <a href={`/orders#${service.href}`}>
                 <img src={service.imgSrc} alt="Card image cap" width="80px" height="auto" />
                 <p style={{color: '#f8f9fa'}}>
                   {service.type}
