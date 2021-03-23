@@ -304,7 +304,7 @@ class OrderPlace extends Component {
    return(
       <div class="form-group col"> 
           <div class="input-group">
-            <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="text" onChange={this.handleListChanges.bind(this, 0, list)}/>
+            <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="number" min="0" onChange={this.handleListChanges.bind(this, 0, list)}/>
             <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
               <option value="">Fractional Inches... </option>
               {this.state.fractions.map((frac, i)=>{
@@ -352,7 +352,7 @@ class OrderPlace extends Component {
            </div>
            <div class="form-group mt-auto">
               <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
-              <input class="form-control" name="dist" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
+              <input class="form-control" name="dist" type="number" min="0" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
           <button class="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
         </div>

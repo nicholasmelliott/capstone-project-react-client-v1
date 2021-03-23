@@ -11,6 +11,7 @@ import ServicesMain from './components/ServicesMain';
 import OrderMainPendingItems from './components/OrderMainPendingItems';
 import OrderPlace from './components/OrderPlace';
 import Login from './components/Login';
+import InsectsInArea from './components/InsectsInArea';
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
     searched: [],
     loading: false,
     weatherIMG: '',
+    insects: [],
     services: [
       {
         type: "Build New Screens",
@@ -83,6 +85,15 @@ class App extends Component {
             this.setState({ weatherIMG: data.weatherIMG });
           })
       });
+
+      fetch('/insects')
+      .then(res => {
+        res.json()
+          .then(data => {
+            console.log(data);
+            this.setState({ insects: data});
+          })
+      });
     }
 
   render(){
@@ -120,9 +131,19 @@ class App extends Component {
                         )} 
                 />
                 <Route path="/login" component={Login} />
+                <Route path="/insects" render={ () => (
+                  <>
+                    <InsectsInArea insects={this.state.insects} />
+                  </>
+                )}/>
               </Switch>
           </div>
+          <footer>
+            {/* <a href='https://www.freepik.com/vectors/nature'>Nature vector created by macrovector - www.freepik.com</a> */}
+            <div style={{color: 'darkgray'}}>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          </footer>
         </BrowserRouter>
+        
     );
   }
 }
