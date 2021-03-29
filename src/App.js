@@ -29,9 +29,11 @@ class App extends Component {
     navTwoPhotos: [],
     navThreePhotos: [],
     searched: [],
-    loading: false,
+    loading: false, 
     weatherIMG: '',
     insects: [],
+    USState: '',
+    NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
         type: "Build New Screens",
@@ -70,8 +72,39 @@ class App extends Component {
       }
     ]
   }
+  
 
   componentDidMount() {
+    // const headers = new Headers();
+    // headers.append('Content-Type', 'json');
+
+    // const init = {
+    //   method: 'POST',
+    //   headers: headers,
+    //   mode: 'cors',
+    //   cache: 'default'
+    // };
+
+    const sendLocation = async (pos) => {
+    console.log(pos.coords);
+    const rawResponse = await fetch('/', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
+  });
+  const content = await rawResponse.json();
+  console.log(content);
+};
+
+    const request = navigator.geolocation.getCurrentPosition(sendLocation);
+
+
+    
+   
+    
     fetch('/orders')
       .then(res => res.json())
       .then(orders => {
@@ -85,15 +118,33 @@ class App extends Component {
             this.setState({ weatherIMG: data.weatherIMG });
           })
       });
+      // (async (event) => {
+      // this.setState({ USState: "ALABAMA", loading: true });
+      // const rawResponse = await fetch('/insects', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({state: "AL"})
+      // });
+      // const content = await rawResponse.json();
+      // this.setState({ insects: content, loading: false});
+      // })();
+    }
 
-      fetch('/insects')
-      .then(res => {
-        res.json()
-          .then(data => {
-            console.log(data);
-            this.setState({ insects: data});
-          })
+    onSubmit = async (event) => {
+      this.setState({ USState: event.target[event.target.selectedIndex].text, loading: true });
+      const rawResponse = await fetch('/insects', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({state: event.target.value})
       });
+      const content = await rawResponse.json();
+      this.setState({ insects: content, loading: false});
     }
 
   render(){
@@ -133,14 +184,17 @@ class App extends Component {
                 <Route path="/login" component={Login} />
                 <Route path="/insects" render={ () => (
                   <>
-                    <InsectsInArea insects={this.state.insects} />
+                    <InsectsInArea insects={this.state.insects} submit={this.onSubmit} USState={this.state.USState} loading={this.state.loading} NatureServeCit={this.state.NatureServeCit}/>
                   </>
                 )}/>
               </Switch>
           </div>
-          <footer>
+          <footer class="p-2">
             {/* <a href='https://www.freepik.com/vectors/nature'>Nature vector created by macrovector - www.freepik.com</a> */}
-            <div style={{color: 'darkgray'}}>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Local Weather Info: </strong><a href="https://www.metaweather.com/" title="MetaWeather">MetaWeather.com</a></div>
+            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Info: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. NatureServe, Arlington, Virginia. Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>
+            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Photos: </strong>This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</div>
           </footer>
         </BrowserRouter>
         
