@@ -19,20 +19,21 @@ const Nav = ({ paths, weather }) => {
                     <li className="nav-item active"><a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="/services">Services</a></li>
                     <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area</a></li>
+                    <li className="nav-item"><a className="nav-link" href="https://www.metaweather.com/">Weather in Your Area</a></li>
                 </ul>
-                <a href="insects">
-                    <BeeLogo height="30px" />
+                <a class="d-none d-md-block bee-nav-btn" href="insects">
+                    <BeeLogo className="mr-3" height="30px" />
                 </a>
-                <img className="mr-3" height="20px" src={weather} />
+                <a class="d-none d-md-block" href="https://www.metaweather.com/">
+                    <img className="mr-3" height="30px" src={weather} />
+                </a>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" />
                 </form>
                 <form className="form-inline">
                     <a className="btn btn-outline-primary ml-2" type="button" href="login">Log In</a>
                     <a className="btn btn-primary ml-2" type="button" href="signup">Sign Up</a>
-                    <a className="nav-link" href="contact"> 
-                        <img className="ml-2" src="phone.svg" width="30px" height="30px" />
-                    </a>
                 </form>
             </div>
       </nav>
