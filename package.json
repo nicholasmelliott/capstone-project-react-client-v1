@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "http://gsbackend-env.eba-iuaizz9k.us-east-2.elasticbeanstalk.com",
   "eslintConfig": {
     "extends": [
       "react-app",
