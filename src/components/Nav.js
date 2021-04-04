@@ -23,13 +23,48 @@ const Nav = ({ paths, weather }) => {
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" />
                 </form>
-                <form className="form-inline">
-                    <a className="btn btn-outline-primary ml-2" type="button" href="login">Log In</a>
-                    <a className="btn btn-primary ml-2" type="button" href="signup">Sign Up</a>
-                    <a className="nav-link" href="contact"> 
-                        <img className="ml-2" src="phone.svg" width="30px" height="30px" />
-                    </a>
-                </form>
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary ml-2 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Log In
+                    </button>
+                    <form class="dropdown-menu dropdown-menu-right p-4">
+                        <div class="form-group">
+                          <label for="exampleDropdownFormEmail2">Email address</label>
+                          <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleDropdownFormPassword2">Password</label>
+                          <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" />
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="dropdownCheck2" />
+                          <label class="form-check-label" for="dropdownCheck2">
+                            Remember me
+                          </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary ml-2 dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sign Up
+                    </button>
+                    <form class="dropdown-menu dropdown-menu-right p-4">
+                        <div class="form-group">
+                          <label for="email">Email address</label>
+                          <input type="email" class="form-control" id="email" placeholder="email@example.com" />
+                        </div>
+                        <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" class="form-control" id="password" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                          <label for="confirmPassword">Confirm Password</label>
+                          <input type="password" class="form-control" id="confirmPassword" placeholder="Password" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
             </div>
       </nav>
 	);  
