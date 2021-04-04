@@ -5,10 +5,5 @@ module.exports = {
            $: "jquery",
            jQuery: "jquery"
        })
-    ],
-
-    devServer: {
-        compress: true,
-        disableHostCheck: true
-     }      
+    ]
 };
