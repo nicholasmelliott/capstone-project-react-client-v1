@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {ReactComponent as BeeLogo} from '../bee.svg';
 
 const Nav = ({ paths, weather }) => {
 
@@ -18,8 +19,15 @@ const Nav = ({ paths, weather }) => {
                     <li className="nav-item active"><a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="/services">Services</a></li>
                     <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area</a></li>
+                    <li className="nav-item"><a className="nav-link" href="https://www.metaweather.com/">Weather in Your Area</a></li>
                 </ul>
-                <img className="mr-3" height="20px" src={weather} />
+                <a class="d-none d-md-block bee-nav-btn" href="insects">
+                    <BeeLogo className="mr-3" height="30px" />
+                </a>
+                <a class="d-none d-md-block" href="https://www.metaweather.com/">
+                    <img className="mr-3" height="30px" src={weather} />
+                </a>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" />
                 </form>

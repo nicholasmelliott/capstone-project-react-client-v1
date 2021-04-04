@@ -12,7 +12,7 @@ body {
   background-size: cover;
   height: auto;
   width: 100%;
- position: fixed;
+ /* position: fixed; */
 }
 
 .dropdown-menu {
@@ -23,6 +23,13 @@ ul {
   list-style-type: none;
 }
 
+footer {
+  min-height: 60px;
+  margin-top: 30px;
+  background-image: linear-gradient(rgb(224, 224, 224), rgb(255, 255, 255));
+  padding-left: 50px;
+  padding-top: 20px;
+}
 
 /* Home Page Styling */
 
@@ -72,7 +79,7 @@ ul {
   text-align: center;
   /*mt accounts for navbar */
   margin-top: 90px;
-}
+} 
 
 .orders-small {
   margin-top: 30px;
@@ -87,6 +94,28 @@ ul {
 
 .services-group > .col-md-3 {
   display: inline-block;
+}
+
+.bee-nav-btn:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
 .navbar-collapse {
@@ -191,11 +220,6 @@ h6 {
   padding-bottom: 50px;
 }
 
-.cart {
-  padding: 0px;
-  height: auto;
-}
-
 .cart-header {
   background-color: #f8f9fa;
   border-radius: 15px 15px 0 0;
@@ -225,3 +249,78 @@ h6 {
   overflow: auto;
   max-height: 200px;
 }
+
+.insect-title {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 3rem;
+  color: white;
+}
+
+.subtitle {
+  font-family: 'Raleway', sans-serif;
+  color: darkslategray;
+  font-size: 3rem;
+}
+
+.insect-card .title {
+  font-family: 'Raleway', sans-serif;
+  color: darkslategray;
+  font-size: 2.5rem;
+}
+
+.insectPhoto, .insectLogo {
+  display: none;
+}
+
+.insect {
+  text-decoration: none;
+  background-color: rgba(255, 255, 225, 0.7);
+}
+
+.insect:hover {
+  background-color: white;
+  border-color: lightgray;
+  border-radius: 15px;
+}
+
+.insect:hover .insectPhoto {
+  display: block;
+}
+
+.insect:hover .insectLogo {
+  display: block;
+}
+
+.insectPhotoSmall {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+
+.insectPhotoLarge {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 575px) {
+  .insectLogo, .insectPhoto {
+      display: block;
+  }
+  .insect {
+    background-color: white;
+  }
+}
+
+.sfShadow {
+  box-shadow: 0px 10px 5px gray;
+}
+
+.sfShadowBottom {
+  box-shadow: 0px -10px 5px gray;
+}
+
+.location-UI {
+  font-size: 12px;
+}
+
