@@ -6,7 +6,7 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* background-color: #EBEBEB; */
-  background-image: url("./screenCloseup.JPG"); 
+  background-image: url("/src/screenCloseup.JPG"); 
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
