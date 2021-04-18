@@ -12,6 +12,7 @@ import ServicesMain from './components/ServicesMain';
 import OrderMainPendingItems from './components/OrderMainPendingItems';
 import OrderPlace from './components/OrderPlace';
 import InsectsInArea from './components/InsectsInArea';
+import backImg from './screenCloseup.JPG';
 
 
 class App extends Component {
@@ -71,6 +72,10 @@ class App extends Component {
         href: "cGlass"
       }
     ]
+  }
+
+  componentWillMount() {
+    document.body.style.backgroundImage = `url(${backImg})`;
   }
   
 
