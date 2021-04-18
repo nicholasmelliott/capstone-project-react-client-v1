@@ -2,12 +2,14 @@ import React from 'react';
 
 const ServicesMain = ({ services , loading }) => (
 	<div>
-    <div class="d-none d-md-block services-main">
+    <div class="d-none d-md-block services-main p-4">
         <div class="d-flex">
           {services.map((service)=>{
             return(
               <div class="card col" width="18rem" style={{backgroundColor: 'rgba(255,255,255,0)'}}>
-               <img class="card-img-top mt-2" src={service.imgSrc} alt="Card image cap" />
+                <div class="row p-3">
+                  <img class="col-12 card-img-top mt-2" src={service.imgSrc} alt="Card image cap" />
+                </div>
                <div class="card-body pl-0 pr-0">
                 <h5 class="card-title">{service.type}</h5>
                 <p class="card-text">{service.desc}</p>
