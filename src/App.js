@@ -11,7 +11,6 @@ import OrdersMain from './components/OrdersMain';
 import ServicesMain from './components/ServicesMain';
 import OrderMainPendingItems from './components/OrderMainPendingItems';
 import OrderPlace from './components/OrderPlace';
-import Login from './components/Login';
 import InsectsInArea from './components/InsectsInArea';
 
 
@@ -182,7 +181,6 @@ class App extends Component {
                             : <OrdersMain />
                         )} 
                 />
-                <Route path="/login" component={Login} />
                 <Route path="/insects" render={ () => (
                   <>
                     <InsectsInArea insects={this.state.insects} submit={this.onSubmit} USState={this.state.USState} loading={this.state.loading} NatureServeCit={this.state.NatureServeCit}/>
