@@ -414,7 +414,7 @@ class OrderPlace extends Component {
                })()}
              </ul>
              <div class="col-3">
-             <h8 class="row">{prod.product}</h8>
+             <h5 class="row">{prod.product}</h5>
              <img class="row" height="70%" src={this.props.services[serviceNum].imgSrc} />
              </div> 
            </div>
