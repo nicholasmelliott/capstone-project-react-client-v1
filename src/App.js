@@ -13,6 +13,12 @@ import OrderMainPendingItems from './components/OrderMainPendingItems';
 import OrderPlace from './components/OrderPlace';
 import InsectsInArea from './components/InsectsInArea';
 import backImg from './screenCloseup.JPG';
+import bScreenImg from './serviceIMGs/border-outer.svg';
+import bWindowImg from './serviceIMGs/border-all.svg';
+import rScreenImg from './serviceIMGs/layers-fill.svg';
+import rWindowImg from './serviceIMGs/layers-half.svg';
+import cGlassImg from './serviceIMGs/columns-gap.svg';
+
 
 
 class App extends Component {
@@ -39,35 +45,35 @@ class App extends Component {
       {
         type: "Build New Screens",
         desc: "Choose the color of your: frame, screen, hardware, etc.",
-        imgSrc: "border-outer.svg",
+        imgSrc: bScreenImg,
         btn: "Build New",
         href: "bScreens"
       },
       {
         type: "Build New Windows",
         desc: "Choose the color of your: frame, screen, hardware, etc.",
-        imgSrc: "border-all.svg",
+        imgSrc: bWindowImg,
         btn: "Build New",
         href: "bWindows"
       },
       {
         type: "Restore Old Screens",
         desc: "Bring your house to life by repairing those old, dirty, torn screens.",
-        imgSrc: "layers-fill.svg",
+        imgSrc: rScreenImg,
         btn: "Restore Old",
         href: "rScreens"
       },
       {
         type: "Restore Old Windows",
         desc: "Defeat the winter's cold air and revamp your old storm windows.",
-        imgSrc: "layers-half.svg",
+        imgSrc: rWindowImg,
         btn: "Restore Old",
         href: "rWindows"
       },
       {
         type: "Custom Glass",
         desc: "Need glass? We can cut to size or shape depending on your needs.",
-        imgSrc: "columns-gap.svg",
+        imgSrc: cGlassImg,
         btn: "Custom Glass",
         href: "cGlass"
       }
@@ -76,6 +82,7 @@ class App extends Component {
 
   componentWillMount() {
     document.body.style.backgroundImage = `url(${backImg})`;
+    console.log("BACKGROUND IMAGE:" + backImg);
   }
   
 
