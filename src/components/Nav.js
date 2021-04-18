@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {ReactComponent as BeeLogo} from '../bee.svg';
+import mainImg from '../grid-3x3-gap-fill.svg';
 
 const Nav = ({ paths, weather }) => {
 
   	return (
 	    <nav className="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm">
             <a className="navbar-brand" href="/">
-                <img className="ml-3 mr-3" src="grid-3x3-gap-fill.svg" width="30px" height="30px" fill="#8CD5FF" />
+                <img className="ml-3 mr-3" src={mainImg} width="30px" height="30px" fill="#8CD5FF" />
                 <strong>SCREEN</strong>
                 <i>WORX</i>
             </a>
