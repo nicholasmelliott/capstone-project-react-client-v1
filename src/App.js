@@ -40,6 +40,7 @@ class App extends Component {
     weatherIMG: '',
     insects: [],
     USState: '',
+    backEndUrl: "http://gsbackend-env.eba-iuaizz9k.us-east-2.elasticbeanstalk.com",
     NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
@@ -99,7 +100,7 @@ class App extends Component {
 
     const sendLocation = async (pos) => {
     console.log(pos.coords);
-    const rawResponse = await fetch('/', {
+    const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -117,7 +118,7 @@ class App extends Component {
     
    
     
-    fetch('/orders')
+    fetch(`${this.state.backEndUrl}/orders`)
       .then(res => res.json())
       .then(orders => {
         this.setState({ orders });
@@ -147,7 +148,7 @@ class App extends Component {
 
     onSubmit = async (event) => {
       this.setState({ USState: event.target[event.target.selectedIndex].text, loading: true });
-      const rawResponse = await fetch('/insects', {
+      const rawResponse = await fetch(`${this.state.backEndUrl}/insects`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
