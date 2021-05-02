@@ -216,7 +216,7 @@ class OrderPlace extends Component {
   submitOrderHandler = (event) => {
     event.preventDefault();
     const prods = this.mergeProducts();
-    fetch('/orders', {
+    fetch(`${this.props.backEndUrl}/orders`, {
      method: 'POST',
      headers: {
       'Accept': 'application/json',

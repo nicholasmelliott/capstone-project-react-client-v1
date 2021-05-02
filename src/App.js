@@ -183,7 +183,7 @@ class App extends Component {
                 /> 
                 <Route exact path="/orders" render={ () => (           
                     <> 
-                      <OrderPlace services={this.state.services} cart={this.state.cart}/>
+                      <OrderPlace services={this.state.services} cart={this.state.cart} backEndUrl={this.state.backEndUrl}/>
                     </>
                   )}
                 /> 
