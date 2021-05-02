@@ -40,7 +40,7 @@ class App extends Component {
     weatherIMG: '',
     insects: [],
     USState: '',
-    backEndUrl: "http://gsbackend-env.eba-iuaizz9k.us-east-2.elasticbeanstalk.com",
+    backEndUrl: "https://dycm80udplyvx.cloudfront.net",
     NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
