@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://gsbackend-env.eba-iuaizz9k.us-east-2.elasticbeanstalk.com",
+  "proxy": "https://dycm80udplyvx.cloudfront.net/",
   "eslintConfig": {
     "extends": [
       "react-app",
