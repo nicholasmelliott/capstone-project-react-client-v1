@@ -124,7 +124,7 @@ class App extends Component {
         this.setState({ orders });
       });
   
-    fetch('/weather')
+    fetch('${this.state.backEndUrl}/weather')
       .then(res => {
         res.json()
           .then(data => {
