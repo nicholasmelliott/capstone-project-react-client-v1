@@ -124,26 +124,26 @@ class App extends Component {
         this.setState({ orders });
       });
   
-    fetch('${this.state.backEndUrl}/weather')
+    fetch(`${this.state.backEndUrl}/weather`)
       .then(res => {
         res.json()
           .then(data => {
             this.setState({ weatherIMG: data.weatherIMG });
           })
       });
-      (async (event) => {
-      this.setState({ USState: "ALABAMA", loading: true });
-      const rawResponse = await fetch('/insects', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({state: "AL"})
-      });
-      const content = await rawResponse.json();
-      this.setState({ insects: content, loading: false});
-      })();
+      // (async (event) => {
+      // this.setState({ USState: "ALABAMA", loading: true });
+      // const rawResponse = await fetch('/insects', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({state: "AL"})
+      // });
+      // const content = await rawResponse.json();
+      // this.setState({ insects: content, loading: false});
+      // })();
     }
 
     onSubmit = async (event) => {
