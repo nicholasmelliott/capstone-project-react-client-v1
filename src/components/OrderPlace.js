@@ -4,9 +4,9 @@ import NewWindowsForm from "./NewWindowsForm";
 import RestoreScreensForm from "./RestoreScreensForm";
 import RestoreWindowsForm from "./RestoreWindowsForm";
 import CustomGlassForm from "./CustomGlassForm";
-import cart from "../cart4.svg";
-import arrowUp from "../chevron-compact-up.svg";
-import arrowDown from "../chevron-compact-down.svg";
+import cart from "../cartIMGs/cart4.svg";
+import arrowUp from "../cartIMGs/chevron-compact-up.svg";
+import arrowDown from "../cartIMGs/chevron-compact-down.svg";
 
 class OrderPlace extends Component {
   constructor(props) {

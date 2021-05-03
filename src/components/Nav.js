@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import {ReactComponent as BeeLogo} from '../bee.svg';
-import mainImg from '../grid-3x3-gap-fill.svg';
+import {ReactComponent as BeeLogo} from '../navIMGs/bee.svg';
+import mainImg from '../navIMGs/grid-3x3-gap-fill.svg';
 
 const Nav = ({ paths, weather }) => {
 
