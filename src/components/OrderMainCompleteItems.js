@@ -50,7 +50,7 @@ const OrderMainCompleteItems = ({ orders , loading }) => (
 																	{"  -  " + product.Dimension.width + "'' x " + product.Dimension.height + "''" + " " + product.type}
 																</h8>
   																<h8 class="col-3 font-weight-bold m-0 p-0 text-left text-uppercase" style={{color:"gray"}}>
-																	{order.type}
+																	{product.service}
 																</h8>
 								  							</li>
 														)
