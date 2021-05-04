@@ -392,12 +392,12 @@ class OrderPlace extends Component {
  cartItemUI = (prods, serviceNum) => {
    const allDim = (prods, prod) => {
      if(prods !== 'cGlass'){
-      return `${parseInt(prod.details.width[0].int) + parseFloat(prod.details.width[0].decimals)} x 
-      ${parseInt(prod.details.height[0].int) + parseFloat(prod.details.height[0].decimals)} x 
-      ${parseInt(prod.details.depth[0].int) + parseFloat(prod.details.depth[0].decimals)}`;  
+      return `${(parseInt(prod.details.width[0].int) ? parseInt(prod.details.width[0].int) : 0) + (prod.details.width[0].decimals ? parseFloat(prod.details.width[0].decimals): 0)} x 
+      ${(parseInt(prod.details.height[0].int) ? parseInt(prod.details.height[0].int) : 0) + (prod.details.height[0].decimals ? parseFloat(prod.details.height[0].decimals): 0)} x 
+      ${(parseInt(prod.details.depth[0].int) ? parseInt(prod.details.depth[0].int) : 0) + (prod.details.depth[0].decimals ? parseFloat(prod.details.depth[0].decimals): 0)}`;  
      }else{
-      return `${parseInt(prod.details.width[0].int) + parseFloat(prod.details.width[0].decimals)} x 
-      ${parseInt(prod.details.height[0].int) + parseFloat(prod.details.height[0].decimals)}`;
+      return `${(parseInt(prod.details.width[0].int) ? parseInt(prod.details.width[0].int) : 0) + (prod.details.width[0].decimals ? parseFloat(prod.details.width[0].decimals): 0)} x 
+      ${(parseInt(prod.details.height[0].int) ? parseInt(prod.details.height[0].int) : 0) + (prod.details.height[0].decimals ? parseFloat(prod.details.height[0].decimals): 0)}`;
      }
    }
    return(
