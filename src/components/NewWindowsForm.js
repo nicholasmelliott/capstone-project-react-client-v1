@@ -33,7 +33,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
       <div class="col-6">
         <div class="form-group"> 
           <label class="mt-2" for="wFType">Please select the frame type:</label>
-          <select class="form-control" id="wFType" name="fType" onChange={change}>
+          <select class="form-control" id="wFType" name="fType" onChange={change} required>
             <option value="">...</option>
             <option value="standard">Standard</option>
             <option value="storm">Storm</option>
@@ -43,7 +43,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
       <div class="col-6">
         <div class="form-group"> 
           <label class="mt-2" for="wFColor">Please select the frame color:</label>
-          <select class="form-control" id="wFColor" name="fColor" onChange={change}>
+          <select class="form-control" id="wFColor" name="fColor" onChange={change} required>
             <option value="">...</option>
             <option value="white">White</option>
             <option value="bronze">Bronze</option>
@@ -63,7 +63,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
     <div class="row">     
       <div class="form-group col-12"> 
         <label class="mt-2" for="wMaterial">Please select the window material:</label>
-        <select class="form-control" id="wMaterial" name="wMaterial" onChange={change}>
+        <select class="form-control" id="wMaterial" name="wMaterial" onChange={change} required>
           <option value="">...</option>
           <option value="glass">Glass</option>
           <option value="acrylic">Acrylic</option>

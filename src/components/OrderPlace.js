@@ -307,7 +307,7 @@ class OrderPlace extends Component {
     <div class="form-group row"> 
       <div class="col-12">
         <label class="mt-2" for={`${prod}-${list}`}>Please select a quantity:</label>
-        <select class="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler}>
+        <select class="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler} required>
           {(()=>{
             let opts = [];
             for(let i = 0; i <= 30; i++){

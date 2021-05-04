@@ -33,7 +33,7 @@ const RestoreWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwar
       <div class="col-6">
         <div class="form-group"> 
           <label class="mt-2" for="frameType">Please select the frame type:</label>
-          <select class="form-control" id="frameType" name="frameType" onChange={change}>
+          <select class="form-control" id="frameType" name="frameType" onChange={change} required>
             <option value="">...</option>
             <option value="standard">Standard</option>
             <option value="storm">Storm</option>
@@ -43,7 +43,7 @@ const RestoreWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwar
       <div class="col-6">
         <div class="form-group"> 
           <label class="mt-2" for="frameColor">Please select the frame color:</label>
-          <select class="form-control" id="frameColor" name="frameColor" onChange={change}>
+          <select class="form-control" id="frameColor" name="frameColor" onChange={change} required>
             <option value="">...</option>
             <option value="white">White</option>
             <option value="bronze">Bronze</option>
@@ -63,15 +63,10 @@ const RestoreWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwar
     <div class="row">     
       <div class="form-group col-12"> 
         <label class="mt-2" for="rWMaterial">Please select the window material:</label>
-        <select class="form-control" id="WMaterial" name="wMaterial" onChange={change}>
+        <select class="form-control" id="WMaterial" name="wMaterial" onChange={change} required>
           <option value="">...</option>
-          <option value="charFib">Charcoal Fiberglass</option>
-          <option value="grayFib">Gray Fiberglass</option>
-          <option value="charAlum">Charcoal Aluminum</option>
-          <option value="millAlum">Mill Aluminum</option>
-          <option value="blackAlum">Black Aluminum</option>
-          <option value="blackPet">Black PetSafe</option>
-          <option value="grayPet">Gray PetSafe</option>
+          <option value="glass">Glass</option>
+          <option value="acrylic">Acrylic</option>
         </select>
       </div>
     </div>
