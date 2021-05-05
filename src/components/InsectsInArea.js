@@ -82,49 +82,49 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
         const informalTax = insect.informalTax;
         if(insect.photo != ""){
             return(
-                <img src={insect.photo} class={`${size}`}/>
+                <img src={insect.photo} class={`${size}`} style={{borderRadius: 50 + "%"}}/>
             );
         }else{
             if(insect.commonName){
                 if(/\bBees\b/.test(informalTax)){
                     return (
-                        <img src={BeeLogo} width="125px" height="125px"/> 
+                        <img src={BeeLogo} class={`${size}`}/> 
                     );
                 }else if(/\bSpiders\b/i.test(informalTax)){
                     return (
-                      <img src={SpiderLogo} width="125px" height="125px"/> 
+                      <img src={SpiderLogo} class={`${size}`}/> 
                     );
                 }else if(/\bBeetles\b/i.test(informalTax)){
                     return (
-                      <img src={BeetleLogo} width="125px" height="125px"/> 
+                      <img src={BeetleLogo} class={`${size}`}/> 
                     );
                 }else if(/\bSkippers\b/i.test(informalTax)){
                     return (
-                        <img src={ButterFlyLogo} width="125px" height="125px"/> 
+                        <img src={ButterFlyLogo} class={`${size}`}/> 
                     );
                 }else if(/\bMoths\b/i.test(informalTax)){
                     return (
-                        <img src={MothLogo} width="125px" height="125px"/> 
+                        <img src={MothLogo} class={`${size}`}/> 
                     );
                 }else if(/\bDragonflies\b/i.test(informalTax)){
                     return (
-                        <img src={DragonFlyLogo} width="125px" height="125px"/> 
+                        <img src={DragonFlyLogo} class={`${size}`}/> 
                     );
                 }else if(/\bAnts\b/i.test(informalTax)){
                     return (
-                        <img src={AntLogo} width="125px" height="125px"/> 
+                        <img src={AntLogo} class={`${size}`}/> 
                     );
                 }else if(/\bGrasshoppers\b/i.test(informalTax)){
                     return (
-                        <img src={GrassHopperLogo} width="125px" height="125px"/> 
+                        <img src={GrassHopperLogo} class={`${size}`}/> 
                     );
                 }else if(/\bFlies\b/i.test(informalTax)){
                     return (
-                        <img src={FlyLogo} width="125px" height="125px"/> 
+                        <img src={FlyLogo} class={`${size}`}/> 
                     );
                 }else if(/\bMayflies\b/i.test(informalTax)){
                     return (
-                        <img src={MayFlyLogo} width="125px" height="125px"/> 
+                        <img src={MayFlyLogo} class={`${size}`}/> 
                     );
                 }
                 // else{
@@ -170,7 +170,10 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
     };
 
 	return (
-    <div style={{marginTop: 70 + "px"}}>
+    <div style={{marginTop: 70 + "px", width: 100 + "%"}}>
+        <div class="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert" role="alert"><strong>Want to know what local insects are in your area? </strong> Select your state to see what your window screens keep out!
+          <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;       </span></button>
+        </div>
         <div style={{backgroundColor: "silver", color: 'darkslategray', height: 100 +"px"}}>
             <div class="row m-0 p-0">
                 <h1 class="col-6 d-none d-md-block m-0 ml-3 mt-2 insect-title"><strong>Insects in <i>Your</i> Area</strong></h1>
@@ -195,7 +198,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             return(
             <>
               <a class="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} type="button" data-toggle="modal" data-target={`#modal${i}`} >  
-                <div class="row">
+                <div class="row p-3 p-sm-0">
                     <div class="col-8 m-0 pr-0 insect-card"  style={{overflowY: "hidden"}}>  
                         <strong class="title text-capitalize" style={{color: 'black', fontSize: 1.25 + "rem"}}>{insect.commonName ? insect.commonName : ""}</strong><br/>
                         <i style={{color: 'darkgray'}}>{insect.sciName}</i><br/><br/>
