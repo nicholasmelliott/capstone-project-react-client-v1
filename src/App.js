@@ -115,7 +115,7 @@ class App extends Component {
     //Fetching initial insects for insects page
     (async (event) => {
       this.setState({ USState: "ALABAMA", loading: true });
-      const rawResponse = await fetch('/insects', {
+      const rawResponse = await fetch(`${this.state.backEndUrl}/insects`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
