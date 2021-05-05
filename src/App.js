@@ -40,6 +40,7 @@ class App extends Component {
     insects: [],
     USState: '',
     backEndUrl: "https://dycm80udplyvx.cloudfront.net",
+    // backEndUrl: "",
     NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
@@ -88,6 +89,7 @@ class App extends Component {
 
   componentDidMount() {
 
+    //Sends browser location to server and then fetches weather
     const sendLocation = async (pos) => {
       console.log(pos.coords);
       const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
@@ -97,6 +99,14 @@ class App extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
+      }).then(() => {
+        fetch(`${this.state.backEndUrl}/weather`)
+          .then(res => {
+            res.json()
+              .then(data => {
+                this.setState({ weatherJSON: data });
+              })
+          });
       });
     };
 
@@ -123,13 +133,7 @@ class App extends Component {
         this.setState({ orders });
       });
   
-    fetch(`${this.state.backEndUrl}/weather`)
-      .then(res => {
-        res.json()
-          .then(data => {
-            this.setState({ weatherJSON: data });
-          })
-      });
+    
     }
 
     onSubmit = async (event) => {
