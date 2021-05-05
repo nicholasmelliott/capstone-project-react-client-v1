@@ -27,7 +27,7 @@ const Nav = ({ paths, weather }) => {
                 </a>
                 <a href="https://www.metaweather.com/" style={{textDecoration: "none", color: "green"}}>
                     <div class="d-inline-flex align-items-center pl-3 pr-3" style={{backgroundColor: "#EBEBEB", borderRadius: 5 + "px"}}>
-                        <p class="m-0 mr-3 text-right">{weather.title}<br/>{parseInt(weather.currTemp * 9 / 5 + 32)}°</p>
+                        <p class="m-0 mr-3 text-right">{weather.title}<br/>{weather.currTemp ? parseInt(weather.currTemp * 9 / 5 + 32) + "°" : ""}</p>
                         <img height="30px" src={weather.weatherIMG} />
                     </div>
                 </a>
