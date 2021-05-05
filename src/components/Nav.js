@@ -16,20 +16,23 @@ const Nav = ({ paths, weather }) => {
                 <span className="navbar-toggler-icon" />
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0 d-md-none">
+                <ul className="navbar-nav mr-auto mt-2 mb-2 mt-lg-0 d-md-none">
                     <li className="nav-item active"><a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="/services">Services</a></li>
                     <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li>
                     <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area</a></li>
-                    <li className="nav-item"><a className="nav-link" href="https://www.metaweather.com/">Weather in Your Area</a></li>
                 </ul>
                 <a class="d-none d-md-block bee-nav-btn" href="insects">
                     <BeeLogo className="mr-3" height="30px" />
                 </a>
-                <a class="d-none d-md-block" href="https://www.metaweather.com/">
-                    <img className="mr-3" height="30px" src={weather} />
+                <a href="https://www.metaweather.com/" style={{textDecoration: "none", color: "green"}}>
+                    <div class="d-inline-flex align-items-center pl-3 pr-3" style={{backgroundColor: "#EBEBEB", borderRadius: 5 + "px"}}>
+                        <p class="m-0 mr-3 text-right">{weather.title}<br/>{parseInt(weather.currTemp * 9 / 5 + 32)}°</p>
+                        <img height="30px" src={weather.weatherIMG} />
+                    </div>
                 </a>
-                <form className="form-inline my-2 my-lg-0">
+                {/* Future Features */}
+                {/* <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-2 pt-0 pb-0" type="search" placeholder="Search" />
                 </form>
                 <div class="dropdown">
@@ -73,7 +76,7 @@ const Nav = ({ paths, weather }) => {
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
-                </div>
+                </div> */}
             </div>
       </nav>
 	);  

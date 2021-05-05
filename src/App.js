@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import './normalize.css';
 import './style.css';
@@ -37,7 +36,7 @@ class App extends Component {
     navThreePhotos: [],
     searched: [],
     loading: false, 
-    weatherIMG: '',
+    weatherJSON: '',
     insects: [],
     USState: '',
     backEndUrl: "https://dycm80udplyvx.cloudfront.net",
@@ -88,36 +87,36 @@ class App extends Component {
   
 
   componentDidMount() {
-    // const headers = new Headers();
-    // headers.append('Content-Type', 'json');
-
-    // const init = {
-    //   method: 'POST',
-    //   headers: headers,
-    //   mode: 'cors',
-    //   cache: 'default'
-    // };
 
     const sendLocation = async (pos) => {
-    console.log(pos.coords);
-    const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
-  });
-  const content = await rawResponse.json();
-  console.log(content);
-};
+      console.log(pos.coords);
+      const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
+      });
+    };
 
-    const request = navigator.geolocation.getCurrentPosition(sendLocation);
+    navigator.geolocation.getCurrentPosition(sendLocation);
 
+    //Fetching initial insects for insects page
+    (async (event) => {
+      this.setState({ USState: "ALABAMA", loading: true });
+      const rawResponse = await fetch('/insects', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({state: "AL"})
+      });
+      const content = await rawResponse.json();
+      this.setState({ insects: content, loading: false});
+    })();
 
-    
-   
-    
     fetch(`${this.state.backEndUrl}/orders`)
       .then(res => res.json())
       .then(orders => {
@@ -128,22 +127,9 @@ class App extends Component {
       .then(res => {
         res.json()
           .then(data => {
-            this.setState({ weatherIMG: data.weatherIMG });
+            this.setState({ weatherJSON: data });
           })
       });
-      // (async (event) => {
-      // this.setState({ USState: "ALABAMA", loading: true });
-      // const rawResponse = await fetch('/insects', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({state: "AL"})
-      // });
-      // const content = await rawResponse.json();
-      // this.setState({ insects: content, loading: false});
-      // })();
     }
 
     onSubmit = async (event) => {
@@ -166,7 +152,7 @@ class App extends Component {
     return(
       <BrowserRouter>
           <div>
-              <Header paths={this.state.navOptions} search={this.getPhotos} weather={this.state.weatherIMG} />
+              <Header paths={this.state.navOptions} search={this.getPhotos} weather={this.state.weatherJSON} />
               <Switch>
                 <Route exact path="/" render={ () => (           
                     <> 
