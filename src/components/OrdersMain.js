@@ -4,7 +4,7 @@ import OrderMainPendingItems from './OrderMainPendingItems';
 
 const OrdersMain = ({ orders, loading }) => (
 	<div class="orders-main p-md-4">
-        <div class="alert alert-dark alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert" role="alert"><strong>Looking to see if your order has been completed? </strong>Check the fields below.
+        <div class="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert" role="alert"><strong>Looking to see if your order has been completed? </strong>Check the fields below.
           <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;       </span></button>
         </div>
         <div class="d-none d-lg-block order-list-main">
