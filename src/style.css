@@ -277,7 +277,6 @@ h6 {
 .insect:hover {
   background-color: white;
   border-color: lightgray;
-  border-radius: 15px;
 }
 
 .insect:hover .insectPhoto {
