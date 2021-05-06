@@ -48,35 +48,50 @@ class App extends Component {
         desc: "Choose the color of your: frame, screen, hardware, etc.",
         imgSrc: bScreenImg,
         btn: "Build New",
-        href: "bScreens"
+        href: "bScreens",
+        service: "Build",
+        product: "Screen",
+        price: "N/A"
       },
       {
         type: "Build New Windows",
         desc: "Choose the color of your: frame, screen, hardware, etc.",
         imgSrc: bWindowImg,
         btn: "Build New",
-        href: "bWindows"
+        href: "bWindows",
+        service: "Build",
+        product: "Window",
+        price: "N/A"
       },
       {
         type: "Restore Old Screens",
         desc: "Bring your house to life by repairing those old, dirty, torn screens.",
         imgSrc: rScreenImg,
         btn: "Restore Old",
-        href: "rScreens"
+        href: "rScreens",
+        service: "Repair",
+        product: "Screen",
+        price: "N/A"
       },
       {
         type: "Restore Old Windows",
         desc: "Defeat the winter's cold air and revamp your old storm windows.",
         imgSrc: rWindowImg,
         btn: "Restore Old",
-        href: "rWindows"
+        href: "rWindows",
+        service: "Repair",
+        product: "Window",
+        price: "N/A"
       },
       {
         type: "Custom Glass",
         desc: "Need glass? We can cut to size or shape depending on your needs.",
         imgSrc: cGlassImg,
         btn: "Custom Glass",
-        href: "cGlass"
+        href: "cGlass",
+        service: "Cut Glass",
+        product: "Glass",
+        price: "N/A"
       }
     ]
   }

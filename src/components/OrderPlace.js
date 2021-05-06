@@ -236,17 +236,17 @@ class OrderPlace extends Component {
 
   }
 
-  submitHandler = (service, event) => {
+  submitHandler = (serviceNum, event) => {
     const totalProd = event.target.id;
     const prod = event.target.name;
-    
+  
     event.preventDefault();
     this.setState(prevState => ({
         [totalProd]: [
           ...prevState[totalProd],
           {
-            product: prod,
-            service: service,
+            product: this.props.services[serviceNum].product,
+            service: this.props.services[serviceNum].service,
             details: this.state[prod]
           }
         ]
@@ -411,7 +411,7 @@ class OrderPlace extends Component {
              </div>
              <ul class="list-group col-3 p-0">
                <li class="list-group-item  p-0">
-                 <strong>{prods}</strong> 
+                 <strong>{this.props.services[serviceNum].product}</strong> 
                </li>
                <li class="list-group-item  p-0">
                  {allDim(prods, prod)}
@@ -438,10 +438,13 @@ class OrderPlace extends Component {
                  
                })()}
              </ul>
-             <div class="col-3">
-             <h5 class="row">{prod.product}</h5>
-             <img class="row" height="70%" src={this.props.services[serviceNum].imgSrc} />
+             <div class="col-3 content-align-center">
+                <h5 class="row">{this.props.services[serviceNum].service}</h5>
+                <img class="row" height="50%" src={this.props.services[serviceNum].imgSrc} />
              </div> 
+             <div class="col-3">
+               <h5>{this.props.services[serviceNum].price}</h5>
+             </div>
            </div>
          </li>
          )
@@ -524,7 +527,7 @@ class OrderPlace extends Component {
                 <div class="col-lg order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
-                    <form onSubmit={this.submitHandler.bind(this, this.props.services[0].btn)} id="screens" name="newScreen">
+                    <form onSubmit={this.submitHandler.bind(this, 0)} id="screens" name="newScreen">
                       <NewScreensForm 
                         services={this.props.services} 
                         change={this.changeHandler} 
@@ -537,7 +540,7 @@ class OrderPlace extends Component {
                   </div>
                   <div id="bWindows">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
-                    <form onSubmit={this.submitHandler.bind(this, this.props.services[1].btn)} id="windows" name="newWindow">
+                    <form onSubmit={this.submitHandler.bind(this, 1)} id="windows" name="newWindow">
                       <NewWindowsForm 
                         services={this.props.services} 
                         change={this.changeHandler}
@@ -550,7 +553,7 @@ class OrderPlace extends Component {
                   </div>
                   <div id="rScreens">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
-                    <form onSubmit={this.submitHandler.bind(this, this.props.services[2].btn)} id="rScreens" name="restoreScreen">
+                    <form onSubmit={this.submitHandler.bind(this, 2)} id="rScreens" name="restoreScreen">
                       <RestoreScreensForm 
                         services={this.props.services}
                         change={this.changeHandler}
@@ -563,7 +566,7 @@ class OrderPlace extends Component {
                   </div>
                   <div id="rWindows">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
-                    <form onSubmit={this.submitHandler.bind(this, this.props.services[3].btn)} id="rWindows" name="restoreWindow">
+                    <form onSubmit={this.submitHandler.bind(this, 3)} id="rWindows" name="restoreWindow">
                       <RestoreWindowsForm 
                         services={this.props.services}
                         change={this.changeHandler}
@@ -576,7 +579,7 @@ class OrderPlace extends Component {
                   </div>
                   <div id="cGlass">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
-                    <form onSubmit={this.submitHandler.bind(this, this.props.services[4].btn)} id="cGlass" name="customGlass">
+                    <form onSubmit={this.submitHandler.bind(this, 4)} id="cGlass" name="customGlass">
                       <CustomGlassForm 
                         services={this.props.services}
                         change={this.changeHandler}
