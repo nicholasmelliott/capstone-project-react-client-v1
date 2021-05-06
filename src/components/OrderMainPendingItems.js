@@ -3,7 +3,6 @@ import React from 'react';
 const OrderMainPendingItems = ({ orders , loading }) => (
 	<div>
 		{orders.map((order) => {
-			console.log(order);
 			if(!order.complete){
 				return(
 					<div class="d-flex pending-item">
@@ -72,7 +71,7 @@ const OrderMainPendingItems = ({ orders , loading }) => (
 							</div>
 						</div>
 						<div class="col-3"> <img src="circle.svg" width="auto" height="60px"/>
-							<h6 style={{color:"gray"}}>Order Pending...</h6>
+							<h6 class="mt-1" style={{color:"gray"}}>Order Pending...</h6>
 						</div>
 					</div>
 				);

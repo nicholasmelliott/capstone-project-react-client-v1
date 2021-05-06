@@ -3,7 +3,6 @@ import React from 'react';
 const OrderMainCompleteItems = ({ orders , loading }) => (
 	<div>
 		{orders.map((order) => {
-			console.log(order);
 			if(order.complete){
 				return(
 					<div class="d-flex complete-item">
@@ -39,7 +38,6 @@ const OrderMainCompleteItems = ({ orders , loading }) => (
 											const sizeTypeLi = 
 												order.products.map((product)=>{
 													totalProducts += product.quantity;
-													console.log(product.quantity);
 													if(product.Dimension){
 														return(
 															<li class="list-group-item p-0 d-flex inline-block">
