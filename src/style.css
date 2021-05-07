@@ -13,6 +13,14 @@ body {
  /* position: fixed; */
 }
 
+input {
+  border-radius: 0
+}
+
+input[type="button"] {
+  -webkit-appearance: none;
+}
+
 .dropdown-menu {
   width: 250px;
 }
