@@ -30,7 +30,7 @@ const OrdersMain = ({ orders, loading }) => (
               <li class="nav-item"><a class="nav-link" style={{color: "#303030"}} href="#pOrders">Pending Orders</a></li>
             </ul>
           </nav>
-          <div class="d-lg-none orders-small-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+          <div class="d-lg-none orders-small-body" data-spy="scroll" data-target="#navbar-example2" data-offset="1">
             <div id="cOrders"> 
               <OrderMainCompleteItems orders={orders} />
             </div>
