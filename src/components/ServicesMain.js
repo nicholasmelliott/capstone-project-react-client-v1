@@ -31,7 +31,7 @@ const ServicesMain = ({ services , loading }) => (
             <div class="col-4 content-justify-center mt-2">
               <a href={`/orders#${service.href}`} style={{textDecoration: 'none'}}>
                 <img src={service.imgSrc} alt="Card image cap" width="80px" height="auto" />
-                <p style={{color: '#f8f9fa'}}>
+                <p style={{color: "#303030"}}>
                   {service.type}
                 </p>
               </a>  

@@ -26,8 +26,8 @@ const OrdersMain = ({ orders, loading }) => (
         <div class="order-list-main">     
           <nav class="navbar navbar-light bg-light px-3 position-relative justify-content-around d-lg-none" id="navbar-example2" role="tablist">
             <ul class="nav nav-tabs">
-              <li class="nav-item"><a class="nav-link" href="#cOrders">Completed Orders</a></li>
-              <li class="nav-item"><a class="nav-link" href="#pOrders">Pending Orders</a></li>
+              <li class="nav-item"><a class="nav-link" style={{color: "#303030"}} href="#cOrders">Completed Orders</a></li>
+              <li class="nav-item"><a class="nav-link" style={{color: "#303030"}} href="#pOrders">Pending Orders</a></li>
             </ul>
           </nav>
           <div class="d-lg-none orders-small-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">
