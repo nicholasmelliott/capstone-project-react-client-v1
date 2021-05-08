@@ -114,15 +114,12 @@ class App extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
-      }).then(() => {
-        fetch(`${this.state.backEndUrl}/weather`)
-          .then(res => {
-            res.json()
-              .then(data => {
-                this.setState({ weatherJSON: data });
-              })
-          });
-      });
+      }).then(res => {
+        res.json()
+          .then(data => {
+            this.setState({ weatherJSON: data });
+           })
+        });
     };
 
     navigator.geolocation.getCurrentPosition(sendLocation);
