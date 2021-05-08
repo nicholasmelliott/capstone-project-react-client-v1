@@ -204,7 +204,7 @@ class App extends Component {
               </Switch>
           </div>
           <footer class="p-2">
-            <AmplifySignOut />
+            {/* <AmplifySignOut /> */}
             {/* <a href='https://www.freepik.com/vectors/nature'>Nature vector created by macrovector - www.freepik.com</a> */}
             <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Local Weather Info: </strong><a href="https://www.metaweather.com/" title="MetaWeather">MetaWeather.com</a></div>
             <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
