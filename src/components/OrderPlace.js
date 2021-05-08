@@ -245,6 +245,10 @@ class OrderPlace extends Component {
         [totalProd]: [
           ...prevState[totalProd],
           {
+            user: {
+              fName: "Guest",
+              lName:  Math.floor(Math.random()  * (100000 - 10000) + 10000).toString()
+            },
             product: this.props.services[serviceNum].product,
             service: this.props.services[serviceNum].service,
             details: this.state[prod]
