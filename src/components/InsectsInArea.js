@@ -171,7 +171,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
 
 	return (
     <div style={{marginTop: 70 + "px", width: 100 + "%"}}>
-        <div class="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert" role="alert"><strong>Want to know what local insects are in your area? </strong> Select your state to see what your window screens keep out!
+        <div class="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert mb-2" role="alert"><strong>Want to know what local insects are in your area? </strong> Select your state to see what your window screens keep out!
           <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;       </span></button>
         </div>
         <div style={{backgroundColor: "silver", color: 'darkslategray', height: 100 +"px"}}>
