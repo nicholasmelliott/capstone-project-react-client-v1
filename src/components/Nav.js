@@ -19,10 +19,10 @@ const Nav = ({ paths, weather }) => {
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
                 <ul className="navbar-nav mr-auto mt-2 mb-2 mt-lg-0 d-md-none">
-                    <li className="nav-item active"><a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a></li>
+                    <li className="nav-item"><a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a></li>
                     <li className="nav-item"><a className="nav-link" href="/services">Services</a></li>
-                    <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li>
-                    <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area</a></li>
+                    {/* <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li> */}
+                    <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area<BeeLogo className="ml-2" height="30px" /></a></li>
                 </ul>
                 <a class="d-none d-md-block bee-nav-btn" href="insects">
                     <BeeLogo className="mr-3" height="30px" />
