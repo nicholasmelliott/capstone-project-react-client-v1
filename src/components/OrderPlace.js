@@ -439,8 +439,8 @@ class OrderPlace extends Component {
                })()}
              </ul>
              <div class="col-3 content-align-center">
-                <h5 class="row">{this.props.services[serviceNum].service}</h5>
-                <img class="row" height="50%" src={this.props.services[serviceNum].imgSrc} />
+                <h5 class="row ml-1">{this.props.services[serviceNum].service}</h5>
+                <img class="row ml-1" height="50%" src={this.props.services[serviceNum].imgSrc} />
              </div> 
              <div class="col-3">
                <h5>{this.props.services[serviceNum].price}</h5>
@@ -501,6 +501,13 @@ class OrderPlace extends Component {
  }
 
   render(){
+    const itemTot = 
+      this.state.screens.length
+      + this.state.windows.length
+      + this.state.rScreens.length
+      + this.state.rWindows.length
+      + this.state.cGlass.length;
+
     return(
 	    <div style={{marginTop: 50 + "px"}}>
         <div class="row m-0" style={{paddingLeft:10 + "px", paddingRight: 10 + "px"}}>
@@ -596,11 +603,16 @@ class OrderPlace extends Component {
           </div>
           {/* Cart displayed on medium and below displays*/}
           <div class="fixed-bottom d-lg-none"  style={{backgroundColor: 'rgba(255,255,255,0)'}}>
-            <nav class="navbar navbar-light bg-light justify-content-center">
-              <button class="navbar-toggler" type="button" onClick={this.cartArrowDisplay} data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-light bg-light row">
+              <div class="col-4 d-flex justify-content-center"/>
+              <button class="navbar-toggler col-4" type="button" onClick={this.cartArrowDisplay} data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <img class="m-1" src={cart}/>
                 <img class="m-1" src={this.state.arrowImgSrc}/>
               </button>
+              <p class="col-4 d-flex justify-content-end m-0">
+                {
+                  itemTot != 0 ?  itemTot + " Item(s)" : ""
+                }</p>
             </nav>
             <div class="collapse" ref={this.cartRef} id="navbarToggleExternalContent">
               {this.cartUI('small')}
