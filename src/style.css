@@ -17,7 +17,7 @@ input {
   border-radius: 0
 }
 
-input[type="button"] {
+input[type="search"] {
   -webkit-appearance: none;
 }
 
