@@ -197,7 +197,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
 		  {loading ? loadingUI : insects.map((insect,i) => {
             return(
             <>
-              <a class="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} type="button" data-toggle="modal" data-target={`#modal${i}`} >  
+              <div class="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} data-toggle="modal" data-target={`#modal${i}`} >  
                 <div class="row p-3 p-sm-0">
                     <div class="col-8 m-0 pr-0 insect-card"  style={{overflowY: "hidden"}}>  
                         <strong class="title text-capitalize" style={{color: 'black', fontSize: 1.25 + "rem"}}>{insect.commonName ? insect.commonName : ""}</strong><br/>
@@ -208,7 +208,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                         {photoOrLogo(insect, "insectPhotoSmall")}
                     </div>
                 </div>
-              </a> 
+              </div> 
               {/* Pop-up modal for displaying larger insect photo */}
               <div class="modal fade" id={`modal${i}`} tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
