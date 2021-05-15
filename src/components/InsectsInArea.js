@@ -198,15 +198,17 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             return(
             <>
               <div class="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} data-toggle="modal" data-target={`#modal${i}`} >  
-                <div class="row p-3 p-sm-0">
+                <div class="row pl-3 pr-3 pt-3">
                     <div class="col-8 m-0 pr-0 insect-card"  style={{overflowY: "hidden"}}>  
                         <strong class="title text-capitalize" style={{color: 'black', fontSize: 1.25 + "rem"}}>{insect.commonName ? insect.commonName : ""}</strong><br/>
                         <i style={{color: 'darkgray'}}>{insect.sciName}</i><br/><br/>
-                        {locationUI(insect)}
                     </div>
                     <div class="insectPhoto col-4 p-2">
                         {photoOrLogo(insect, "insectPhotoSmall")}
                     </div>
+                </div>
+                <div class="row m-0 pl-3 pr-3 pb-3">
+                    {locationUI(insect)}
                 </div>
               </div> 
               {/* Pop-up modal for displaying larger insect photo */}
