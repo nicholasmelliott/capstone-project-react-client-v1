@@ -9,10 +9,8 @@ const Nav = ({ paths, weather }) => {
 	    <nav className="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm">
             <a className="navbar-brand" href="/">
                 <img className="ml-3 mr-3" src={mainImg} width="30px" height="30px" fill="#8CD5FF" />
-                <strong class="d-none d-sm-inline">SCREEN</strong>
-                <i class="d-none d-sm-inline">WORX</i>
-                <strong class="d-inline d-sm-none">S</strong>
-                <i class="d-inline d-sm-none">W</i>
+                <strong class="d-none d-inline">SCREEN</strong>
+                <i class="d-none d-inline">WORX</i>
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
