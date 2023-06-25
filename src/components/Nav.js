@@ -10,7 +10,7 @@ const Nav = ({ paths, weather }) => {
             <a className="navbar-brand" href="/">
                 <img className="ml-3 mr-3" src={mainImg} width="30px" height="30px" fill="#8CD5FF" />
                 <strong class="d-none d-inline">SCREEN</strong>
-                <i class="d-none d-inline">WORX</i>
+                <i class="d-none d-inline">SOURCE</i>
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
