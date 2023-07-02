@@ -213,6 +213,21 @@ h6 {
 
 /* OrderPlace styling */
 
+.orders-wrapper {
+  margin-top: 50px; 
+  background-color: rgba(255,255,255,.75);
+}
+
+.orders-list-wrapper {
+  padding-left: 10px;
+  padding-right: 10px
+}
+
+.order-list-main nav a {
+  text-decoration: none;
+  color: black;
+}
+
 .orders-body {
   background-color: white;
   height: auto;

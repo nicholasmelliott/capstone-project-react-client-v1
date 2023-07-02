@@ -513,8 +513,8 @@ class OrderPlace extends Component {
       + this.state.cGlass.length;
 
     return(
-	    <div style={{marginTop: 50 + "px"}}>
-        <div class="row m-0" style={{paddingLeft:10 + "px", paddingRight: 10 + "px"}}>
+	    <div className="orders-wrapper">
+        <div class="row m-0 orders-list-wrapper">
           <div class="col-lg-8 orders-body">
             <div class="order-list-main">     
               <nav class="navbar navbar-light bg-light px-3 position-relative justify-content-around" id="navbar-example2" role="tablist">
@@ -523,7 +523,7 @@ class OrderPlace extends Component {
                       {this.props.services.map((service, i)=>{
                         return (
                           <li class="nav-item" key={i}>
-                              <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}  style={{color: "black"}}>
+                              <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}>
                                 <p class="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
                                 <img src={service.imgSrc} />
                               </a>
