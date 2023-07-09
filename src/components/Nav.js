@@ -9,8 +9,8 @@ const Nav = ({ paths, weather }) => {
 	    <nav className="navbar fixed-top navbar-expand-md navbar-light bg-light shadow-sm">
             <a className="navbar-brand" href="/">
                 <img className="ml-3 mr-3" src={mainImg} width="30px" height="30px" fill="#8CD5FF" />
-                <strong class="d-none d-inline">SCREEN</strong>
-                <i class="d-none d-inline">SOURCE</i>
+                <strong className="d-none d-inline">SCREEN</strong>
+                <i className="d-none d-inline">SOURCE</i>
             </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
@@ -22,7 +22,7 @@ const Nav = ({ paths, weather }) => {
                     {/* <li className="nav-item"><a className="nav-link disabled" href="/contact">Contact</a></li> */}
                     <li className="nav-item"><a className="nav-link" href="/insects">Insects in Your Area<BeeLogo className="ml-2" height="30px" /></a></li>
                 </ul>
-                <a class="d-none d-md-block bee-nav-btn" href="insects">
+                <a className="d-none d-md-block bee-nav-btn" href="insects">
                     <BeeLogo className="mr-3" height="30px" />
                 </a>
                 {/* <a href="https://www.metaweather.com/" style={{textDecoration: "none", color: "green"}}>
