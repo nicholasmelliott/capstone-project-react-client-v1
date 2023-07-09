@@ -41,7 +41,7 @@ class App extends Component {
     USState: '',
     backEndUrl: process.env.REACT_APP_BACKEND_URL,
     // backEndUrl: "",
-    NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
+    NatureServeCit: <div className="fs-8"><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
         id: "s1",
@@ -211,9 +211,9 @@ class App extends Component {
           <footer className="p-2">
             {/* <AmplifySignOut /> */}
             {/* <a href='https://www.freepik.com/vectors/nature'>Nature vector created by macrovector - www.freepik.com</a> */}
-            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Info: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. NatureServe, Arlington, Virginia. Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>
-            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Photos: </strong>This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</div>
+            <div className="font-italic"><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div className="font-italic"><strong>Insect Info: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. NatureServe, Arlington, Virginia. Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>
+            <div className="font-italic"><strong>Insect Photos: </strong>This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</div>
           </footer>
         </BrowserRouter>
         

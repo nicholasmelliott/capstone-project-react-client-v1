@@ -35,6 +35,8 @@ footer {
   background-image: linear-gradient(rgb(224, 224, 224), rgb(255, 255, 255));
   padding-left: 50px;
   padding-top: 20px;
+  color: darkgray; 
+  font: 10 px
 }
 
 /* Home Page Styling */
