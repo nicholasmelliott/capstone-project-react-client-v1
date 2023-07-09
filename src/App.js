@@ -44,6 +44,7 @@ class App extends Component {
     NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
       {
+        id: "s1",
         type: "Build New Screens",
         desc: "Choose the color of your: frame, screen, hardware, etc.",
         imgSrc: bScreenImg,
@@ -54,6 +55,7 @@ class App extends Component {
         price: "N/A"
       },
       {
+        id: "s2",
         type: "Build New Windows",
         desc: "Choose the color of your: frame, screen, hardware, etc.",
         imgSrc: bWindowImg,
@@ -64,6 +66,7 @@ class App extends Component {
         price: "N/A"
       },
       {
+        id: "s3",
         type: "Restore Old Screens",
         desc: "Bring your house to life by repairing those old, dirty, torn screens.",
         imgSrc: rScreenImg,
@@ -74,6 +77,7 @@ class App extends Component {
         price: "N/A"
       },
       {
+        id: "s4",
         type: "Restore Old Windows",
         desc: "Defeat the winter's cold air and revamp your old storm windows.",
         imgSrc: rWindowImg,
@@ -84,6 +88,7 @@ class App extends Component {
         price: "N/A"
       },
       {
+        id: "s5",
         type: "Custom Glass",
         desc: "Need glass? We can cut to size or shape depending on your needs.",
         imgSrc: cGlassImg,
