@@ -308,10 +308,10 @@ class OrderPlace extends Component {
   // Creates quantity UI with multiple quantity options, Creates unique id specific to product 
  quantityUI =(prod, list) => {
   return(
-    <div class="form-group row"> 
-      <div class="col-12">
-        <label class="mt-2" for={`${prod}-${list}`}>Please select a quantity:</label>
-        <select class="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler} required>
+    <div className="form-group row"> 
+      <div className="col-12">
+        <label className="mt-2" for={`${prod}-${list}`}>Please select a quantity:</label>
+        <select className="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler} required>
           {(()=>{
             let opts = [];
             for(let i = 0; i <= 30; i++){
@@ -331,10 +331,10 @@ class OrderPlace extends Component {
 
  dimensionUI = (prod, list) => {
    return(
-      <div class="form-group col"> 
-          <div class="input-group">
-            <input class="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="number" min="0" onChange={this.handleListChanges.bind(this, 0, list)}/>
-            <select class="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
+      <div className="form-group col"> 
+          <div className="input-group">
+            <input className="form-control" id={`${prod}-${list}`} name="int" value={this.state[prod][list][0].int} type="number" min="0" onChange={this.handleListChanges.bind(this, 0, list)}/>
+            <select className="form-control" name="decimals" value={this.state[prod][list][0].decimals} onChange={this.handleListChanges.bind(this, 0, list)}>
               <option value="">Fractional Inches... </option>
               {this.state.fractions.map((frac, i)=>{
                 return(
@@ -353,11 +353,11 @@ class OrderPlace extends Component {
   return( 
     <div>
       {this.state[prod][list].map((val, i) => 
-        <div class="p-3 mt-3" id={i} key={i} style={{backgroundColor: '#f8f9fa'}}>
+        <div className="p-3 mt-3" id={i} key={i} style={{backgroundColor: '#f8f9fa'}}>
           <label for={`${prod}-${list}-type`}>Hardware #{i+1}</label>
-          <div class="form-group">
-             <label class="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
-             <select class="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
+          <div className="form-group">
+             <label className="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
+             <select className="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="">...</option>
                <option value="plunger">Plunger</option>
                <option value="knife latch">Knife Latch</option>
@@ -365,9 +365,9 @@ class OrderPlace extends Component {
                <option value="tension spring">Tension Spring</option>
              </select>
            </div>
-           <div class="form-group mt-auto">
-             <label class="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
-             <select class="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
+           <div className="form-group mt-auto">
+             <label className="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
+             <select className="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="">...</option>
                <option value="BottomLeftToTop">BottomLeftToTop</option>
                <option value="BottomLeftToRight">BottomLeftToRight</option>
@@ -379,15 +379,15 @@ class OrderPlace extends Component {
                <option value="TopRightToLeft">TopRightToLeft</option>
              </select>
            </div>
-           <div class="form-group mt-auto">
-              <label class="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
-              <input class="form-control" name="dist" type="number" min="0" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
+           <div className="form-group mt-auto">
+              <label className="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
+              <input className="form-control" name="dist" type="number" min="0" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
-          <button class="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
+          <button className="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 
         </div>
       )}
-      <div class="pl-3 pr-3 mt-3">
-        <button class="btn btn-secondary btn-block footer mt-3" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}>Add New Hardware Item (<strong>+</strong>)</button>  
+      <div className="pl-3 pr-3 mt-3">
+        <button className="btn btn-secondary btn-block footer mt-3" type="button" id="{i}" onClick={this.addItemClick.bind(this, prod, list)}>Add New Hardware Item (<strong>+</strong>)</button>  
       </div>
     </div>
   )   
@@ -408,32 +408,32 @@ class OrderPlace extends Component {
      <div>
        {this.state[prods].map((prod, i) => {
          return(
-         <li key={i} class="list-group-item">
-           <div class="row">
-             <div class="col-3">
+         <li key={i} className="list-group-item">
+           <div className="row">
+             <div className="col-3">
                <h6>{prod.details.quantity}</h6>
              </div>
-             <ul class="list-group col-3 p-0">
-               <li class="list-group-item  p-0">
+             <ul className="list-group col-3 p-0">
+               <li className="list-group-item  p-0">
                  <strong>{this.props.services[serviceNum].product}</strong> 
                </li>
-               <li class="list-group-item  p-0">
+               <li className="list-group-item  p-0">
                  {allDim(prods, prod)}
                </li>
-               <li class="list-group-item  p-0">
+               <li className="list-group-item  p-0">
                  {prod.details.fColor} 
                </li>
-               <li class="list-group-item  p-0">
+               <li className="list-group-item  p-0">
                  {prod.details.fType} 
                </li>
-               <li class="list-group-item  p-0">
+               <li className="list-group-item  p-0">
                  {prod.details.material} 
                </li>
                {(()=>{
                  if(prods !== 'cGlass'){
                   prod.details.hardware.map((hardware, i) => { 
                     return(
-                      <li key={i} class="list-group-item p-0">
+                      <li key={i} className="list-group-item p-0">
                         {hardware.type + " " + hardware.fromLoc + " " + hardware.dist}
                       </li>
                     );
@@ -442,11 +442,11 @@ class OrderPlace extends Component {
                  
                })()}
              </ul>
-             <div class="col-3 content-align-center">
-                <h5 class="row ml-1">{this.props.services[serviceNum].service}</h5>
-                <img class="row ml-1" height="50%" src={this.props.services[serviceNum].imgSrc} />
+             <div className="col-3 content-align-center">
+                <h5 className="row ml-1">{this.props.services[serviceNum].service}</h5>
+                <img className="row ml-1" height="50%" src={this.props.services[serviceNum].imgSrc} />
              </div> 
-             <div class="col-3">
+             <div className="col-3">
                <h5>{this.props.services[serviceNum].price}</h5>
              </div>
            </div>
@@ -461,28 +461,28 @@ class OrderPlace extends Component {
  cartUI = (size) => {
    return(
     <div>
-      <div class="cart-header d-none d-lg-block">
+      <div className="cart-header d-none d-lg-block">
         <h1>CART</h1>
       </div>
-      <div class="cart-body">
-        <ul class="list-group">
-          <li class="list-group-item  p-0">
-            <div class="row">
-              <h6 class="col-3">Quantity</h6>
-              <h6 class="col-3">Product</h6>
-              <h6 class="col-3">Service</h6>
-              <h6 class="col-3">Price</h6>
+      <div className="cart-body">
+        <ul className="list-group">
+          <li className="list-group-item  p-0">
+            <div className="row">
+              <h6 className="col-3">Quantity</h6>
+              <h6 className="col-3">Product</h6>
+              <h6 className="col-3">Service</h6>
+              <h6 className="col-3">Price</h6>
             </div>
           </li>
         </ul>
-        <ul class={`ul-${size}`}>
+        <ul className={`ul-${size}`}>
          {this.cartItemUI('screens', 0)}
          {this.cartItemUI('windows', 1)}
          {this.cartItemUI('rScreens', 2)}
          {this.cartItemUI('rWindows', 3)}
          {this.cartItemUI('cGlass', 4)}
         </ul>
-        <button class="btn btn-success btn-block footer mb-2 mt-3" onClick={this.submitOrderHandler}>Place Order</button>
+        <button className="btn btn-success btn-block footer mb-2 mt-3" onClick={this.submitOrderHandler}>Place Order</button>
       </div>  
     </div>
    );
@@ -514,17 +514,17 @@ class OrderPlace extends Component {
 
     return(
 	    <div className="orders-wrapper">
-        <div class="row m-0 orders-list-wrapper">
-          <div class="col-lg-8 orders-body">
-            <div class="order-list-main">     
-              <nav class="navbar navbar-light bg-light px-3 position-relative justify-content-around" id="navbar-example2" role="tablist">
-                  <ul class="nav nav-tabs">
+        <div className="row m-0 orders-list-wrapper">
+          <div className="col-lg-8 orders-body">
+            <div className="order-list-main">     
+              <nav className="navbar navbar-light bg-light px-3 position-relative justify-content-around" id="navbar-example2" role="tablist">
+                  <ul className="nav nav-tabs">
                       {/* Creates nav items for order form. */}
                       {this.props.services.map((service, i)=>{
                         return (
-                          <li class="nav-item" key={i}>
-                              <a class="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}>
-                                <p class="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
+                          <li className="nav-item" key={i}>
+                              <a className="nav-link d-flex inline pl-3 pr-3 pt-2 pb-2" href={"#" + service.href}>
+                                <p className="d-none d-lg-block mr-2 mb-0">{service.type + "  "}</p>
                                 <img src={service.imgSrc} />
                               </a>
                           </li>
@@ -533,9 +533,9 @@ class OrderPlace extends Component {
                   </ul>
               </nav>
             </div>
-            <div class="orders-form-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">   
-              <div class="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
-                <div class="col-lg order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
+            <div className="orders-form-body" data-spy="scroll" data-target="#navbar-example2" data-offset="0">   
+              <div className="row m-0" style={{height:"auto", backgroundColor:"gray",}}>     
+                <div className="col-lg order-form" style={{height:"auto", backgroundColor:"white", border: 2 + "px"}}>
                   <div id="bScreens">
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                     <form onSubmit={this.submitHandler.bind(this, 0)} id="screens" name="newScreen">
@@ -546,7 +546,7 @@ class OrderPlace extends Component {
                         dimensionUI={this.dimensionUI}
                         hardwareUI={this.hardwareUI}
                       />
-                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
+                      <button className="btn btn-primary btn-block footer mb-2" type="submit">Add Screen(s) to Order</button>
                     </form>
                   </div>
                   <div id="bWindows">
@@ -572,7 +572,7 @@ class OrderPlace extends Component {
                         dimensionUI={this.dimensionUI}
                         hardwareUI={this.hardwareUI}
                       />  
-                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Screen(s) to Order</button>
+                      <button className="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Screen(s) to Order</button>
                     </form>
                   </div>
                   <div id="rWindows">
@@ -585,7 +585,7 @@ class OrderPlace extends Component {
                         dimensionUI={this.dimensionUI}
                         hardwareUI={this.hardwareUI}
                       />  
-                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Window(s) to Order</button>
+                      <button className="btn btn-primary btn-block footer mb-2" type="submit">Add <i>To-Be-Restored</i> Window(s) to Order</button>
                     </form>
                   </div>
                   <div id="cGlass">
@@ -597,7 +597,7 @@ class OrderPlace extends Component {
                         quantityUI={this.quantityUI}
                         dimensionUI={this.dimensionUI}
                       />  
-                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add <i>Custom</i> Glass to Order</button>
+                      <button className="btn btn-primary btn-block footer mb-2" type="submit">Add <i>Custom</i> Glass to Order</button>
                     </form>
                     <hr style={{borderWidth: 2 + "px", borderColor: "black"}}/>
                   </div>
@@ -606,24 +606,24 @@ class OrderPlace extends Component {
             </div>
           </div>
           {/* Cart displayed on medium and below displays*/}
-          <div class="fixed-bottom d-lg-none"  style={{backgroundColor: 'rgba(255,255,255,0)'}}>
-            <nav class="navbar navbar-light bg-light row">
-              <div class="col-4 d-flex justify-content-center"/>
-              <button class="navbar-toggler col-4" type="button" onClick={this.cartArrowDisplay} data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img class="m-1" src={cart}/>
-                <img class="m-1" src={this.state.arrowImgSrc}/>
+          <div className="fixed-bottom d-lg-none"  style={{backgroundColor: 'rgba(255,255,255,0)'}}>
+            <nav className="navbar navbar-light bg-light row">
+              <div className="col-4 d-flex justify-content-center"/>
+              <button className="navbar-toggler col-4" type="button" onClick={this.cartArrowDisplay} data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img className="m-1" src={cart}/>
+                <img className="m-1" src={this.state.arrowImgSrc}/>
               </button>
-              <p class="col-4 d-flex justify-content-end m-0">
+              <p className="col-4 d-flex justify-content-end m-0">
                 {
                   itemTot != 0 ?  itemTot + " Item(s)" : ""
                 }</p>
             </nav>
-            <div class="collapse" ref={this.cartRef} id="navbarToggleExternalContent">
+            <div className="collapse" ref={this.cartRef} id="navbarToggleExternalContent">
               {this.cartUI('small')}
             </div>
           </div>
           {/* Cart displayed on large and above displays*/}
-          <div class="col-4 pl-0.5 mt-3 pr-0 d-none d-lg-block" style={{backgroundColor: 'rgba(255,255,255,0)'}}>
+          <div className="col-4 pl-0.5 mt-3 pr-0 d-none d-lg-block" style={{backgroundColor: 'rgba(255,255,255,0)'}}>
             {this.cartUI('large')}
           </div>
         </div>
