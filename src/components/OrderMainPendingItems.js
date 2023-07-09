@@ -5,7 +5,7 @@ const OrderMainPendingItems = ({ orders , loading }) => (
 		{orders.map((order) => {
 			if(!order.complete){
 				return(
-					<div className="d-flex pending-item">
+					<div key={order.id} className="d-flex pending-item">
 						<div className="col-9">
 							<div className="row ml-1 name-title">
 								{(()=>{
@@ -40,7 +40,7 @@ const OrderMainPendingItems = ({ orders , loading }) => (
                                                     totalProducts += product.quantity
 													if(product.Dimension){
 														return(
-															<li className="list-group-item p-0 d-flex inline-block">
+															<li key={product.id} className="list-group-item p-0 d-flex inline-block">
   																<h8 className="col-1 font-weight-bold text-center m-0 p-0">
 																	{product.quantity}
 																</h8>
