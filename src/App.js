@@ -203,12 +203,12 @@ class App extends Component {
                 )}/>
               </Switch>
           </div>
-          <footer class="p-2">
+          <footer className="p-2">
             {/* <AmplifySignOut /> */}
             {/* <a href='https://www.freepik.com/vectors/nature'>Nature vector created by macrovector - www.freepik.com</a> */}
-            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Info: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. NatureServe, Arlington, Virginia. Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>
-            <div class="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Photos: </strong>This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</div>
+            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Icons: </strong>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Info: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. NatureServe, Arlington, Virginia. Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>
+            <div className="font-italic" style={{color: 'darkgray', fontSize: 10 + "px"}}><strong>Insect Photos: </strong>This product uses the Flickr API but is not endorsed or certified by SmugMug, Inc.</div>
           </footer>
         </BrowserRouter>
         
