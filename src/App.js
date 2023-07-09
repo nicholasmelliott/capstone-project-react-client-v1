@@ -39,7 +39,7 @@ class App extends Component {
     weatherJSON: '',
     insects: [],
     USState: '',
-    backEndUrl: "http://localhost:3001",
+    backEndUrl: process.env.REACT_APP_BACKEND_URL,
     // backEndUrl: "",
     NatureServeCit: <div style={{fontSize: 8 + "px"}}><strong>Info Source: </strong>NatureServe. {new Date().getFullYear()}. NatureServe Explorer [web application]. <br/>NatureServe, Arlington, Virginia. <br /> Available https://explorer.natureserve.org/. (Accessed: {`${new Date().getMonth() + 1} ${new Date().getDate()}, ${new Date().getFullYear()}`}).</div>,
     services: [
