@@ -559,7 +559,7 @@ class OrderPlace extends Component {
                         dimensionUI={this.dimensionUI}
                         hardwareUI={this.hardwareUI}
                       />     
-                      <button class="btn btn-primary btn-block footer mb-2" type="submit">Add Window(s) to Order</button>                     
+                      <button className="btn btn-primary btn-block footer mb-2" type="submit">Add Window(s) to Order</button>                     
                     </form>
                   </div>
                   <div id="rScreens">
