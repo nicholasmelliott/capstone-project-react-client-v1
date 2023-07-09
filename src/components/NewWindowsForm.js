@@ -16,7 +16,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
     <hr/>
     <h6>Dimensions</h6>
     <div className="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label className="form-row ml-1" for="width">Please enter the window's dimensions (in inches):</label>
+      <label className="form-row ml-1" htmlFor="width">Please enter the window's dimensions (in inches):</label>
     </div>
     <div className="form-row mt-2">
       {dimensionUI(prod,'width')}
@@ -32,7 +32,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
     <div className="row">  
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="wFType">Please select the frame type:</label>
+          <label className="mt-2" htmlFor="wFType">Please select the frame type:</label>
           <select className="form-control" id="wFType" name="fType" onChange={change} required>
             <option value="">...</option>
             <option value="standard">Standard</option>
@@ -42,7 +42,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
       </div>
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="wFColor">Please select the frame color:</label>
+          <label className="mt-2" htmlFor="wFColor">Please select the frame color:</label>
           <select className="form-control" id="wFColor" name="fColor" onChange={change} required>
             <option value="">...</option>
             <option value="white">White</option>
@@ -62,7 +62,7 @@ const NewWindowsForm = ({ services, change, quantityUI, dimensionUI, hardwareUI}
     <h6>Window</h6>
     <div className="row">     
       <div className="form-group col-12"> 
-        <label className="mt-2" for="wMaterial">Please select the window material:</label>
+        <label className="mt-2" htmlFor="wMaterial">Please select the window material:</label>
         <select className="form-control" id="wMaterial" name="wMaterial" onChange={change} required>
           <option value="">...</option>
           <option value="glass">Glass</option>

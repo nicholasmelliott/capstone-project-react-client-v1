@@ -16,7 +16,7 @@ const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI})
     <hr/>
     <h6>Dimensions</h6>
     <div className="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label className="form-row ml-1" for="width">Please enter the screen's dimensions (in inches and/or fractional inches):</label>
+      <label className="form-row ml-1" htmlFor="width">Please enter the screen's dimensions (in inches and/or fractional inches):</label>
     </div>
     <div className="form-row mt-2">
       {dimensionUI(prod,'width')}
@@ -32,7 +32,7 @@ const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI})
     <div className="row">  
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="frameType">Please select the frame type:</label>
+          <label className="mt-2" htmlFor="frameType">Please select the frame type:</label>
           <select className="form-control" id="frameType" name="fType" onChange={change} required>
             <option value="">...</option>
             <option value="standard">Standard</option>
@@ -42,7 +42,7 @@ const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI})
       </div>
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="frameColor">Please select the frame color:</label>
+          <label className="mt-2" htmlFor="frameColor">Please select the frame color:</label>
           <select className="form-control" id="frameColor" name="fColor" onChange={change} required>
             <option value="">...</option>
             <option value="white">White</option>
@@ -62,7 +62,7 @@ const NewScreensForm = ({services, change, quantityUI, dimensionUI, hardwareUI})
     <h6>Screen</h6>
     <div className="row">     
       <div className="form-group col-12"> 
-        <label className="mt-2" for="screenColorType">Please select the screen color and material:</label>
+        <label className="mt-2" htmlFor="screenColorType">Please select the screen color and material:</label>
         <select className="form-control" id="screenColorType" name="sType" onChange={change} required>
           <option value="">...</option>
           <option value="charFib">Charcoal Fiberglass</option>

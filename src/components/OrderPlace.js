@@ -310,7 +310,7 @@ class OrderPlace extends Component {
   return(
     <div className="form-group row"> 
       <div className="col-12">
-        <label className="mt-2" for={`${prod}-${list}`}>Please select a quantity:</label>
+        <label className="mt-2" htmlFor={`${prod}-${list}`}>Please select a quantity:</label>
         <select className="form-control" id={`${prod}-${list}`} name="quantity" onChange={this.changeHandler} required>
           {(()=>{
             let opts = [];
@@ -343,7 +343,7 @@ class OrderPlace extends Component {
               })}
             </select>
           </div>
-          <label for={prod + "-" + list}>{list.charAt(0).toUpperCase() + list.slice(1)}</label>
+          <label htmlFor={prod + "-" + list}>{list.charAt(0).toUpperCase() + list.slice(1)}</label>
         </div>
    );
  }
@@ -354,9 +354,9 @@ class OrderPlace extends Component {
     <div>
       {this.state[prod][list].map((val, i) => 
         <div className="p-3 mt-3" id={i} key={i} style={{backgroundColor: '#f8f9fa'}}>
-          <label for={`${prod}-${list}-type`}>Hardware #{i+1}</label>
+          <label htmlFor={`${prod}-${list}-type`}>Hardware #{i+1}</label>
           <div className="form-group">
-             <label className="mt-2" for={`${prod}-${list}-type`}>Please select the hardware type:</label>
+             <label className="mt-2" htmlFor={`${prod}-${list}-type`}>Please select the hardware type:</label>
              <select className="form-control" name="type" id={`${prod}-${list}-type`} value={val.type||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="">...</option>
                <option value="plunger">Plunger</option>
@@ -366,7 +366,7 @@ class OrderPlace extends Component {
              </select>
            </div>
            <div className="form-group mt-auto">
-             <label className="mt-2" for={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
+             <label className="mt-2" htmlFor={`${prod}-${list}-fromLoc`}>Please select the start location:</label>
              <select className="form-control mt-auto" name="fromLoc" id={`${prod}-${list}-fromLoc`} value={val.fromLoc||''} onChange={this.handleListChanges.bind(this, i, list)}>
                <option value="">...</option>
                <option value="BottomLeftToTop">BottomLeftToTop</option>
@@ -380,7 +380,7 @@ class OrderPlace extends Component {
              </select>
            </div>
            <div className="form-group mt-auto">
-              <label className="mt-2" for={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
+              <label className="mt-2" htmlFor={`${prod}-${list}-dist`}>Please select the distance from start location:</label>   
               <input className="form-control" name="dist" type="number" min="0" value={val.dist||""} id={`${prod}-${list}-dist`} onChange={this.handleListChanges.bind(this, i, list)}/> 
            </div>
           <button className="btn btn-outline-secondary btn-block" width="100%" type="button" id={i}  onClick={this.removeItemClick.bind(this, i, prod, list)}>Remove Hardware Item (<strong>-</strong>)</button> 

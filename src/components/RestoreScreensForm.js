@@ -16,7 +16,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
     <hr/>
     <h6>Dimensions</h6>
     <div className="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label className="form-row ml-1" for="width">Please enter the screen's dimensions (in inches):</label>
+      <label className="form-row ml-1" htmlFor="width">Please enter the screen's dimensions (in inches):</label>
     </div>
     <div className="form-row mt-2">
       {dimensionUI(prod,'width')}
@@ -32,7 +32,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
     <div className="row">  
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="rSFType">Please select the frame type:</label>
+          <label className="mt-2" htmlFor="rSFType">Please select the frame type:</label>
           <select className="form-control" id="rSFType" name="frameType" onChange={change} required>
             <option value="">...</option>
             <option value="standard">Standard</option>
@@ -42,7 +42,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
       </div>
       <div className="col-6">
         <div className="form-group"> 
-          <label className="mt-2" for="rSFColor">Please select the frame color:</label>
+          <label className="mt-2" htmlFor="rSFColor">Please select the frame color:</label>
           <select className="form-control" id="rSFColor" name="frameColor" onChange={change} required>
             <option value="">...</option>
             <option value="white">White</option>
@@ -62,7 +62,7 @@ const RestoreScreensForm = ({ services, change, quantityUI, dimensionUI, hardwar
     <h6>Screen</h6>
     <div className="row">     
       <div className="form-group col-12"> 
-        <label className="mt-2" for="rSType">Please select the screen color and material:</label>
+        <label className="mt-2" htmlFor="rSType">Please select the screen color and material:</label>
         <select className="form-control" id="rSType" name="sType" onChange={change} required>
           <option value="">...</option>
           <option value="charFib">Charcoal Fiberglass</option>

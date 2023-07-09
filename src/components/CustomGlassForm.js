@@ -16,7 +16,7 @@ const CustomGlassForm = ({ services, change, quantityUI, dimensionUI}) => (
     <hr/>
     <h6>Dimensions</h6>
     <div className="row" style={{paddingLeft: 15 + "px", paddingRight: 15 + "px"}}>
-      <label className="form-row ml-1" for="width">Please enter the glass's dimensions (in inches):</label>
+      <label className="form-row ml-1" htmlFor="width">Please enter the glass's dimensions (in inches):</label>
     </div>
     <div className="form-row mt-2">
       {dimensionUI(prod,'width')}
@@ -28,7 +28,7 @@ const CustomGlassForm = ({ services, change, quantityUI, dimensionUI}) => (
     <h6>Material</h6>
     <div className="row">     
       <div className="form-group col-12"> 
-        <label className="mt-2" for="rWMaterial">Please select the material:</label>
+        <label className="mt-2" htmlFor="rWMaterial">Please select the material:</label>
         <select className="form-control" id="WMaterial" name="material" onChange={change} required>
           <option value="">...</option>
           <option value="SSAnealGlass">Single Strength Annealed Glass</option>
