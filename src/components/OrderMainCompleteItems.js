@@ -41,15 +41,15 @@ const OrderMainCompleteItems = ({ orders , loading }) => (
 													if(product.Dimension){
 														return(
 															<li key={product.id} className="list-group-item p-0 d-flex inline-block">
-  																<h8 className="col-1 font-weight-bold text-center m-0 p-0">
+  																<span className="col-1 font-weight-bold text-center m-0 p-0">
 																	{product.quantity}
-																</h8>
-  																<h8 className="col-8 m-0 p-0 text-left text-uppercase">
+																</span>
+  																<span className="col-8 m-0 p-0 text-left text-uppercase">
 																	{"  -  " + product.Dimension.width + "'' x " + product.Dimension.height + "''" + " " + product.type}
-																</h8>
-  																<h8 className="col-3 font-weight-bold m-0 p-0 text-left text-uppercase" style={{color:"gray"}}>
+																</span>
+  																<span className="col-3 font-weight-bold m-0 p-0 text-left text-uppercase" style={{color:"gray"}}>
 																	{product.service}
-																</h8>
+																</span>
 								  							</li>
 														)
 													}
@@ -58,10 +58,10 @@ const OrderMainCompleteItems = ({ orders , loading }) => (
 												<>
 													{sizeTypeLi} 
 													<li className="list-group-item p-0 d-flex inline-block">
-														<h6 className="col-1 p-0 font-italic font-weight-bold">
+														<span className="col-1 p-0 font-italic font-weight-bold">
 															{totalProducts}
-														</h6>
-														<h8 className="col-3 p-0 font-italic text-left">Total Items</h8>
+														</span>
+														<span className="col-3 p-0 font-italic text-left">Total Items</span>
 													</li> 
 												</>
 											)
