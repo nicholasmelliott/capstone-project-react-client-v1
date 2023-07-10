@@ -1,4 +1,6 @@
 import React from 'react';
+import StateSelect from './StateSelect';
+import { states } from '../data/states';
 import BeeLogo from '../insectIMGs/bee-silo.svg';
 import SpiderLogo from '../insectIMGs/spider-arthropod-animal-silhouette-1.svg';
 import BeetleLogo from '../insectIMGs/beetle-shape.svg';
@@ -12,59 +14,6 @@ import ButterFlyLogo from '../insectIMGs/butterfly-insect-animal-shape.svg';
 
 const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeCit}) => {
     
-    const states = [
-        { name: 'ALABAMA', abbreviation: 'AL'},
-        { name: 'ALASKA', abbreviation: 'AK'},
-        { name: 'ARIZONA', abbreviation: 'AZ'},
-        { name: 'ARKANSAS', abbreviation: 'AR'},
-        { name: 'CALIFORNIA', abbreviation: 'CA'},
-        { name: 'COLORADO', abbreviation: 'CO'},
-        { name: 'CONNECTICUT', abbreviation: 'CT'},
-        { name: 'DELAWARE', abbreviation: 'DE'},
-        { name: 'DISTRICT OF COLUMBIA', abbreviation: 'DC'},
-        { name: 'FLORIDA', abbreviation: 'FL'},
-        { name: 'GEORGIA', abbreviation: 'GA'},
-        { name: 'HAWAII', abbreviation: 'HI'},
-        { name: 'IDAHO', abbreviation: 'ID'},
-        { name: 'ILLINOIS', abbreviation: 'IL'},
-        { name: 'INDIANA', abbreviation: 'IN'},
-        { name: 'IOWA', abbreviation: 'IA'},
-        { name: 'KANSAS', abbreviation: 'KS'},
-        { name: 'KENTUCKY', abbreviation: 'KY'},
-        { name: 'LOUISIANA', abbreviation: 'LA'},
-        { name: 'MAINE', abbreviation: 'ME'},
-        { name: 'MARYLAND', abbreviation: 'MD'},
-        { name: 'MASSACHUSETTS', abbreviation: 'MA'},
-        { name: 'MICHIGAN', abbreviation: 'MI'},
-        { name: 'MINNESOTA', abbreviation: 'MN'},
-        { name: 'MISSISSIPPI', abbreviation: 'MS'},
-        { name: 'MISSOURI', abbreviation: 'MO'},
-        { name: 'MONTANA', abbreviation: 'MT'},
-        { name: 'NEBRASKA', abbreviation: 'NE'},
-        { name: 'NEVADA', abbreviation: 'NV'},
-        { name: 'NEW HAMPSHIRE', abbreviation: 'NH'},
-        { name: 'NEW JERSEY', abbreviation: 'NJ'},
-        { name: 'NEW MEXICO', abbreviation: 'NM'},
-        { name: 'NEW YORK', abbreviation: 'NY'},
-        { name: 'NORTH CAROLINA', abbreviation: 'NC'},
-        { name: 'NORTH DAKOTA', abbreviation: 'ND'},
-        { name: 'OHIO', abbreviation: 'OH'},
-        { name: 'OKLAHOMA', abbreviation: 'OK'},
-        { name: 'OREGON', abbreviation: 'OR'},
-        { name: 'PENNSYLVANIA', abbreviation: 'PA'},
-        { name: 'RHODE ISLAND', abbreviation: 'RI'},
-        { name: 'SOUTH CAROLINA', abbreviation: 'SC'},
-        { name: 'SOUTH DAKOTA', abbreviation: 'SD'},
-        { name: 'TENNESSEE', abbreviation: 'TN'},
-        { name: 'TEXAS', abbreviation: 'TX'},
-        { name: 'UTAH', abbreviation: 'UT'},
-        { name: 'VERMONT', abbreviation: 'VT'},
-        { name: 'VIRGINIA', abbreviation: 'VA'},
-        { name: 'WASHINGTON', abbreviation: 'WA'},
-        { name: 'WEST VIRGINIA', abbreviation: 'WV'},
-        { name: 'WISCONSIN', abbreviation: 'WI'},
-        { name: 'WYOMING', abbreviation: 'WY' }
-    ];
     //Flickr citation for insect image
     const FlickrCit = (insect) =>{
         return(
@@ -177,18 +126,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
         <div style={{backgroundColor: "silver", color: 'darkslategray', height: 100 +"px"}}>
             <div className="row m-0 p-0">
                 <h1 className="col-6 d-none d-md-block m-0 ml-3 mt-2 insect-title"><strong>Insects in <i>Your</i> Area</strong></h1>
-                <form className="col-md-5" method="post">
-                    <div className="row">
-                        <label className="col-3 mt-3 d-none d-xl-block" htmlFor="state">Select your state:</label>
-                        <select  className="form-control form-control-lg mt-3 ml-3 mr-3 col-md-8" id="state" name="state" onChange={submit.bind(this)}>
-                            {states.map((state, i)=>{
-                                return(
-                                    <option key={i} value={state.abbreviation} >{state.name}</option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                </form>
+                <StateSelect submit={submit.bind(this)} states={states} className={"col-md-5"} />
             </div>
             <hr className="sfShadow" style={{borderWidth: 2 + "px", borderColor: "darkgray"}}/>
         </div>
