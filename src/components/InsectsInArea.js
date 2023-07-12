@@ -19,26 +19,6 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             <p style={{fontSize: 8 + "px"}}><strong>Info Source: </strong><a href={`https://explorer.natureserve.org${insect.url}`}>https://explorer.natureserve.org{insect.url}</a></p>
         );
     } 
-        
-    //Displays States insect species is located
-    const locationUI = (insect) => {
-        return(
-            <div className="location-UI">
-                <i>Located: </i>
-                {insect.subNations[0].map((nation, i) => {
-                    if(i + 1 === insect.subNations[0].length){
-                        return(
-                            <i id={`nation${i}`}>{nation.subnationCode}</i>
-                        )
-                    }else{
-                        return(
-                            <i id={`nation${i}`}>{nation.subnationCode}, </i>
-                        )
-                    }
-                })}
-            </div>
-        );     
-    };
 
 	return (
         <div style={{marginTop: 70 + "px", width: 100 + "%"}}>
@@ -63,7 +43,6 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                                 key={i} 
                                 insect={insect} 
                                 i={i} 
-                                locationUI={locationUI} 
                                 NatServeCit={NatServeCit} 
                                 FlickrCit={FlickrCit}/>
                     ))

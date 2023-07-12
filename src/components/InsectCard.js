@@ -1,7 +1,8 @@
 import React from 'react';
 import InsectImage from './InsectImage';
+import InsectLocations from './InsectLocations';
 
-const InsectCard = ({ insect, i, locationUI, NatServeCit, FlickrCit }) => (
+const InsectCard = ({ insect, i, NatServeCit, FlickrCit }) => (
     <>
         <div className="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} data-toggle="modal" data-target={`#modal${i}`} >  
           <div className="row pl-3 pr-3 pt-3">
@@ -14,7 +15,7 @@ const InsectCard = ({ insect, i, locationUI, NatServeCit, FlickrCit }) => (
               </div>
           </div>
           <div className="row m-0 pl-3 pr-3 pb-3">
-              {locationUI(insect)}
+            <InsectLocations insect={insect} />
           </div>
         </div> 
         {/* Pop-up modal for displaying larger insect photo */}
@@ -34,7 +35,7 @@ const InsectCard = ({ insect, i, locationUI, NatServeCit, FlickrCit }) => (
                 <div className="modal-footer justify-content-start">
                     <div className="row">
                         <div className="col-4">
-                          {locationUI(insect)}
+                          <InsectLocations insect={insect} />
                         </div>
                         <div className="col-4" style={{overflowWrap: "break-word"}}>
                           {NatServeCit(insect)}
