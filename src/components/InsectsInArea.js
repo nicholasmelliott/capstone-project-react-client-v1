@@ -1,17 +1,7 @@
 import React from 'react';
 import StateSelect from './StateSelect';
-import InsectCard from './InsectCard'
+import InsectCard from './InsectCard';
 import { states } from '../data/states';
-import BeeLogo from '../insectIMGs/bee-silo.svg';
-import SpiderLogo from '../insectIMGs/spider-arthropod-animal-silhouette-1.svg';
-import BeetleLogo from '../insectIMGs/beetle-shape.svg';
-import MothLogo from '../insectIMGs/moth-insect-shape.svg';
-import DragonFlyLogo from '../insectIMGs/dragon-fly-insect-animal-shape.svg';
-import AntLogo from '../insectIMGs/ant.svg';
-import GrassHopperLogo from '../insectIMGs/grasshopper-insect-side-view-shape.svg';
-import FlyLogo from '../insectIMGs/fly-shape.svg';
-import MayFlyLogo from '../insectIMGs/sphinx-insect-shape.svg';
-import ButterFlyLogo from '../insectIMGs/butterfly-insect-animal-shape.svg';
 
 const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeCit}) => {
     
@@ -28,66 +18,6 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             <p style={{fontSize: 8 + "px"}}><strong>Info Source: </strong><a href={`https://explorer.natureserve.org${insect.url}`}>https://explorer.natureserve.org{insect.url}</a></p>
         );
     } 
-
-    //Determines whether insect object has photo to display and if not tries to display relevent logo instead
-    const photoOrLogo = (insect, size) => {
-        console.log(insect.informalTax);
-        const informalTax = insect.informalTax;
-        if(insect.photo != ""){
-            return(
-                <img src={insect.photo} className={`${size}`} style={{borderRadius: 50 + "%"}}/>
-            );
-        }else{
-            if(insect.commonName){
-                if(/\bBees\b/.test(informalTax)){
-                    return (
-                        <img src={BeeLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bSpiders\b/i.test(informalTax)){
-                    return (
-                      <img src={SpiderLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bBeetles\b/i.test(informalTax)){
-                    return (
-                      <img src={BeetleLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bSkippers\b/i.test(informalTax)){
-                    return (
-                        <img src={ButterFlyLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bMoths\b/i.test(informalTax)){
-                    return (
-                        <img src={MothLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bDragonflies\b/i.test(informalTax)){
-                    return (
-                        <img src={DragonFlyLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bAnts\b/i.test(informalTax)){
-                    return (
-                        <img src={AntLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bGrasshoppers\b/i.test(informalTax)){
-                    return (
-                        <img src={GrassHopperLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bFlies\b/i.test(informalTax)){
-                    return (
-                        <img src={FlyLogo} className={`${size}`}/> 
-                    );
-                }else if(/\bMayflies\b/i.test(informalTax)){
-                    return (
-                        <img src={MayFlyLogo} className={`${size}`}/> 
-                    );
-                }
-                // else{
-                //     return (
-                //         <img src={AntLogo} width="125px" height="125px"/> 
-                //     );
-                // }
-            }
-        }
-    };
 
     //Displays loading screen
     const loadingUI = 
@@ -141,7 +71,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                 {/* Maps insect objects and creates card with insect info and photos */}
 	            {loading ? loadingUI : insects.map((insect,i) => {
                     return(
-                        <InsectCard key={i} insect={insect} i={i} photoOrLogo={photoOrLogo} locationUI={locationUI} NatServeCit={NatServeCit} FlickrCit={FlickrCit}/>
+                        <InsectCard key={i} insect={insect} i={i} locationUI={locationUI} NatServeCit={NatServeCit} FlickrCit={FlickrCit}/>
                     );
                 })}
 	        </div>
