@@ -1,6 +1,7 @@
 import React from 'react';
 import StateSelect from './StateSelect';
 import InsectCard from './InsectCard';
+import LoadingIndicator from './LoadingIndicator';
 import { states } from '../data/states';
 
 const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeCit}) => {
@@ -18,21 +19,6 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             <p style={{fontSize: 8 + "px"}}><strong>Info Source: </strong><a href={`https://explorer.natureserve.org${insect.url}`}>https://explorer.natureserve.org{insect.url}</a></p>
         );
     } 
-
-    //Displays loading screen
-    const loadingUI = 
-        <div className="d-flex justify-content-center pt-3" style={{backgroundColor: "white", width: 100 + "%", height: 100 + "px"}}>
-            <h5 className="ml-3">Loading</h5>
-            <div className="spinner-grow ml-1" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-            <div className="spinner-grow ml-1" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-            <div className="spinner-grow ml-1" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
-        </div>;
         
     //Displays States insect species is located
     const locationUI = (insect) => {
@@ -69,11 +55,19 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
             </div>
 	        <div className="insectMain row" width="100%">
                 {/* Maps insect objects and creates card with insect info and photos */}
-	            {loading ? loadingUI : insects.map((insect,i) => {
-                    return(
-                        <InsectCard key={i} insect={insect} i={i} locationUI={locationUI} NatServeCit={NatServeCit} FlickrCit={FlickrCit}/>
-                    );
-                })}
+	            {
+                    loading 
+                        ? <LoadingIndicator /> 
+                        : insects.map((insect,i) => (
+                            <InsectCard 
+                                key={i} 
+                                insect={insect} 
+                                i={i} 
+                                locationUI={locationUI} 
+                                NatServeCit={NatServeCit} 
+                                FlickrCit={FlickrCit}/>
+                    ))
+                }
 	        </div>
             <div style={{backgroundColor: "silver", color: 'darkslategray', height: 100 +"px", paddingTop: 15 + "px"}}>
                 <hr className="sfShadowBottom  m-0" style={{borderWidth: 2 + "px", borderColor: "darkgray"}}/>
