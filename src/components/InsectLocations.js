@@ -6,9 +6,9 @@ const InsectLocations = ({insect}) => {
             <i>Located: </i>
             {insect.subNations[0].map((nation, i) => {
                 if(i + 1 === insect.subNations[0].length){
-                    return <i id={`nation${i}`}>{nation.subnationCode}</i>
+                    return <i key={nation.subnationCode} id={`nation${i}`}>{nation.subnationCode}</i>
                 }else{
-                    return <i id={`nation${i}`}>{nation.subnationCode}, </i>
+                    return <i key={nation.subnationCode} id={`nation${i}`}>{nation.subnationCode}, </i>
                 }
             })}
         </div>
