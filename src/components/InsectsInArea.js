@@ -1,6 +1,7 @@
 import React from 'react';
 import StateSelect from './StateSelect';
 import InsectCard from './InsectCard';
+import InsectModal from './InsectModal';
 import LoadingIndicator from './LoadingIndicator';
 import { states } from '../data/states';
 
@@ -24,12 +25,11 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                     loading 
                         ? <LoadingIndicator /> 
                         : insects.map((insect,i) => (
-                            <InsectCard 
-                                key={i} 
-                                insect={insect} 
-                                i={i} 
-                            />
-                    ))
+                            <>
+                                <InsectCard key={i} insect={insect} i={i} />
+                                <InsectModal insect={insect} i={i} />
+                            </>  
+                        ))
                 }
 	        </div>
             <div style={{backgroundColor: "silver", color: 'darkslategray', height: 100 +"px", paddingTop: 15 + "px"}}>
