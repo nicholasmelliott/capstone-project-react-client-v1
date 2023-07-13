@@ -4,22 +4,7 @@ import InsectCard from './InsectCard';
 import LoadingIndicator from './LoadingIndicator';
 import { states } from '../data/states';
 
-const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeCit}) => {
-    
-    //Flickr citation for insect image
-    const FlickrCit = (insect) =>{
-        return(
-            <p style={{fontSize: 8 + "px"}}><strong>Photo Source: </strong><a href={insect.photo}>{insect.photo}</a></p>
-        );
-    } 
-
-    //Nature Serve citation for insect information
-    const NatServeCit = (insect) =>{
-        return(
-            <p style={{fontSize: 8 + "px"}}><strong>Info Source: </strong><a href={`https://explorer.natureserve.org${insect.url}`}>https://explorer.natureserve.org{insect.url}</a></p>
-        );
-    } 
-
+const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeCit}) => { 
 	return (
         <div style={{marginTop: 70 + "px", width: 100 + "%"}}>
             <div className="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert mb-2" role="alert">
@@ -43,8 +28,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                                 key={i} 
                                 insect={insect} 
                                 i={i} 
-                                NatServeCit={NatServeCit} 
-                                FlickrCit={FlickrCit}/>
+                            />
                     ))
                 }
 	        </div>

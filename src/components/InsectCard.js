@@ -1,8 +1,10 @@
 import React from 'react';
 import InsectImage from './InsectImage';
 import InsectLocations from './InsectLocations';
+import FlickrCit from './FlickerCit';
+import NatServeCit from './NatServeCit';
 
-const InsectCard = ({ insect, i, NatServeCit, FlickrCit }) => (
+const InsectCard = ({ insect, i }) => (
     <>
         <div className="insect col-xl-3 col-lg-4" style={{color: "darkslategray", textDecoration: "none", borderWidth: 4 + 'px', borderStyle: "solid", borderRadius: 0 + "px", height: 200 + "px"}} data-toggle="modal" data-target={`#modal${i}`} >  
           <div className="row pl-3 pr-3 pt-3">
@@ -38,10 +40,10 @@ const InsectCard = ({ insect, i, NatServeCit, FlickrCit }) => (
                           <InsectLocations insect={insect} />
                         </div>
                         <div className="col-4" style={{overflowWrap: "break-word"}}>
-                          {NatServeCit(insect)}
+                          <NatServeCit insect={insect} />
                         </div>
                         <div className="col-4" style={{overflowWrap: "break-word"}}>
-                          {FlickrCit(insect)}    
+                          <FlickrCit insect={insect} />   
                         </div>
                     </div>
                 </div>
