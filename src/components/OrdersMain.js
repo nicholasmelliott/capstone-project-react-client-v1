@@ -1,12 +1,14 @@
 import React from 'react';
 import OrderMainCompleteItems from './OrderMainCompleteItems';
 import OrderMainPendingItems from './OrderMainPendingItems';
+import CustomAlert from './CustomAlert';
 
 const OrdersMain = ({ orders, loading }) => (
 	<div className="orders-main p-md-4">
-        <div className="alert alert-info alert-dismissible fade show mt-2 ml-xl-4 mr-xl-4 text-center order-list-alert" role="alert"><strong>Looking to see if your order has been completed? </strong>Check the fields below.
-          <button className="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;       </span></button>
-        </div>
+        <CustomAlert
+          title="Looking to see if your order has been completed?"
+          message="Check the fields below."
+        />
         <div className="d-none d-lg-block order-list-main">
           <div className="row">
             <div className="col pr-0">
