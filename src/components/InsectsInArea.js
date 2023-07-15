@@ -19,7 +19,7 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                 </div>
                 <hr className="sfShadow" style={{borderWidth: 2 + "px", borderColor: "darkgray"}}/>
             </div>
-	        <div className="insectMain row" width="100%">
+	        <div className="row m-0">
                 {/* Maps insect objects and creates card with insect info and photos */}
 	            {
                     loading 
