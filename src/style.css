@@ -297,19 +297,33 @@ h6 {
   font-size: 3rem;
 }
 
-.insect-card .title {
-  font-family: 'Raleway', sans-serif;
-  color: darkslategray;
-  font-size: 2.5rem;
+.insect-card {
+  overflow-y: hidden;
 }
 
-.insectPhoto, .insectLogo {
+.insect-card .title {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+  font-size: 1.25rem;
+}
+
+.insect-card .sub-title {
+  color: darkgray;
+}
+
+.insect-photo, .insectLogo {
   display: none;
 }
 
 .insect {
   text-decoration: none;
   background-color: rgba(255, 255, 225, 0.7);
+  color: darkslategray;
+  text-decoration: none;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 0px; 
+  height: 200px;
 }
 
 .insect:hover {
@@ -317,7 +331,7 @@ h6 {
   border-color: lightgray;
 }
 
-.insect:hover .insectPhoto {
+.insect:hover .insect-photo {
   display: block;
 }
 
@@ -337,7 +351,7 @@ h6 {
 }
 
 @media only screen and (max-width: 575px) {
-  .insectLogo, .insectPhoto {
+  .insectLogo, .insect-photo {
       display: block;
   }
   .insect {
