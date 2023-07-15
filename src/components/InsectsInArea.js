@@ -25,10 +25,10 @@ const InsectsInArea = ({ search, insects, submit, USState, loading, NatureServeC
                     loading 
                         ? <LoadingIndicator /> 
                         : insects.map((insect,i) => (
-                            <>
-                                <InsectCard key={i} insect={insect} i={i} />
+                            <React.Fragment key={insect.id}>
+                                <InsectCard insect={insect} i={i} />
                                 <InsectModal insect={insect} i={i} />
-                            </>  
+                            </React.Fragment>  
                         ))
                 }
 	        </div>
