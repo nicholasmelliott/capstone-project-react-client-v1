@@ -6,7 +6,7 @@ const ServicesMain = ({ services , loading }) => (
         <div className="d-flex">
           {services.map((service)=>{
             return(
-              <div key={service.id} className="card col" width="18rem" style={{backgroundColor: 'rgba(255,255,255,0)'}}>
+              <div key={service.id} className="card col" width="18rem">
                 <div className="row p-3">
                   <img className="col-12 card-img-top mt-2" src={service.imgSrc} alt="Card image cap" />
                 </div>
