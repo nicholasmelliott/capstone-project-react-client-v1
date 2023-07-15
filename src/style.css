@@ -380,6 +380,14 @@ h6 {
   height: auto;
 }
 
+.location-UI {
+  font-size: 12px;
+}
+
+.citation-wrapper {
+  font-size: 8px;
+}
+
 @media only screen and (max-width: 575px) {
   .insectLogo, .insect-photo {
       display: block;
@@ -389,7 +397,5 @@ h6 {
   }
 }
 
-.location-UI {
-  font-size: 12px;
-}
+
 
