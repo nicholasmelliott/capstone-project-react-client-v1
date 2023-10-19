@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import './normalize.css';
-import './style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import './normalize.css';
+import './style.css';
 import Header from './components/Header';
 import OrdersMain from './components/OrdersMain';
 import ServicesMain from './components/ServicesMain';
