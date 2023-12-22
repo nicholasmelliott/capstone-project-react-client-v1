@@ -108,50 +108,58 @@ class App extends Component {
   
 
   componentDidMount() {
-
-    //Sends browser location to server and then fetches weather
+    // Sends browser location to server and then fetches weather
     const sendLocation = async (pos) => {
       console.log(pos.coords);
-      const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
-      }).then(res => {
-        res.json()
-          .then(data => {
-            this.setState({ weatherJSON: data });
-           })
+      try {
+        const rawResponse = await fetch(`${this.state.backEndUrl}/`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({longitude: pos.coords.longitude, latitude: pos.coords.latitude})
         });
+  
+        const data = await rawResponse.json();
+        this.setState({ weatherJSON: data });
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+      }
     };
-
+  
     navigator.geolocation.getCurrentPosition(sendLocation);
-
-    //Fetching initial insects for insects page
-    (async (event) => {
-      this.setState({ USState: "ALABAMA", loading: true });
-      const rawResponse = await fetch(`${this.state.backEndUrl}/insects`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({state: "AL"})
-      });
-      const content = await rawResponse.json();
-      this.setState({ insects: content, loading: false});
+  
+    // Fetching initial insects for insects page
+    (async () => {
+      try {
+        this.setState({ USState: "ALABAMA", loading: true });
+        const rawResponse = await fetch(`${this.state.backEndUrl}/insects`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({state: "AL"})
+        });
+        const content = await rawResponse.json();
+        this.setState({ insects: content, loading: false });
+      } catch (error) {
+        console.error('Error fetching insects:', error);
+      }
     })();
-
+  
+    // Fetch orders
     fetch(`${this.state.backEndUrl}/orders`)
       .then(res => res.json())
       .then(orders => {
         this.setState({ orders });
+      })
+      .catch(error => {
+        console.error('Error fetching orders:', error);
       });
+  }
   
-    
-    }
 
     onSubmit = async (event) => {
       this.setState({ USState: event.target[event.target.selectedIndex].text, loading: true });
